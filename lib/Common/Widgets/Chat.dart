@@ -15,7 +15,6 @@ class _ChatpageState extends State<Chatpage> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-           
           backgroundColor: Colors.grey.withOpacity(0.3),
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -47,101 +46,130 @@ class _ChatpageState extends State<Chatpage> {
         ],
 
       ),
-         body: Column(
+         body: Stack(
            children: [
-             Expanded(
-                 child: ListView.builder(
-                     itemCount: 1,
-                     itemBuilder: (context,index){
-                      return const Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Sender(message: 'hii Sir', time: '15:12PM'),
-                          Reciever(message: 'hii', time: '15:12PM'),
-                          Center(child: SizedBox(child: Text('April 3,2025',style: TextStyle(color: Colors.white),),)),
-
-                          Sender(message: 'This is deepak', time: '15:12PM'),
-                          Reciever(message: 'hii deepak tell me', time: '15:12PM'),
-                          Center(child: SizedBox(child: Text('Friday',style: TextStyle(color: Colors.white),),)),
-
-                          Sender(message: 'How r u sir', time: '15:12PM'),
-                          Reciever(message: 'Good deepak what about u ', time: '15:12PM'),
-                          Center(child: SizedBox(child: Text('Monday',style: TextStyle(color: Colors.white),),)),
-
-                          Sender(message: 'fine sir', time: '15:12PM'),
-                          Reciever(message: 'have u completed today\'s task', time: '15:12PM'),
-                          Center(child: SizedBox(child: Text('Tuesday',style: TextStyle(color: Colors.white),),)),
-
-                          Sender(message: 'yes sir', time: '15:12PM'),
-                          Reciever(message: 'Good', time: '15:12PM'),
-                          Center(child: SizedBox(child: Text('Yesterday',style: TextStyle(color: Colors.white),),)),
-
-                          Sender(message: 'should i get the task tomorrow', time: '15:12PM'),
-                          Reciever(message: 'yes i will give the task on tomorrow meet me in the office', time: '15:12PM'),
-                          Center(child: SizedBox(child: Text('Today',style: TextStyle(color: Colors.white),),)),
-
-                          Sender(message: 'sure sit thank u 😊', time: '15:12PM'),
-                        ],
-                      );
-             }
-             )
+             Image.asset('assets/images/bgimg.png',
+               fit: BoxFit.cover,
+               height: MediaQuery.of(context).size.height,
+               width: MediaQuery.of(context).size.width,
              ),
+            Column(
+             children: [
+               Expanded(
+                   child: ListView.builder(
+                       itemCount: 1,
+                       itemBuilder: (context,index){
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
 
-             Row(
-               children: [
-                 Padding(
-                   padding: const EdgeInsets.all(6.0),
-                   child: Container(
-                     height: 50,
-                     width: 330,
-                     decoration: BoxDecoration(
-                       color: Colors.grey.withOpacity(0.9),
-                       borderRadius: BorderRadius.all(
-                          Radius.circular(30),
+
+                            const SizedBox(height: 10,),
+                            const Sender(message: 'hii Sir', time: '15:12PM'),
+                            const SizedBox(height: 10,),
+                            const Reciever(message: 'hii', time: '15:12PM'),
+                            const SizedBox(height: 15,),
+                             Center(child: Container(child: Center(child: Text('April 3,2025',style: TextStyle(color:Colors.white.withOpacity(0.5)))),width: 85,height: 25,decoration: BoxDecoration(color: Colors.black.withOpacity(0.3),borderRadius: BorderRadius.circular(30)),)),
+                            const SizedBox(height: 5,),
+                            const Sender(message: 'This is deepak', time: '15:12PM'),
+                            const SizedBox(height: 10,),
+                            const Reciever(message: 'hii deepak tell me', time: '15:12PM'),
+                            const SizedBox(height: 15,),
+                             Center(child: Container(child: Center(child: Text('Friday',style: TextStyle(color:Colors.white.withOpacity(0.5)),)),width: 55,height: 25,decoration: BoxDecoration(color: Colors.black.withOpacity(0.3),borderRadius: BorderRadius.circular(30)),)),
+                            const SizedBox(height: 5,),
+                            const Sender(message: 'How r u sir', time: '15:12PM'),
+                            const SizedBox(height: 10,),
+                            const Reciever(message: 'Good deepak what about u ', time: '15:12PM'),
+                            const SizedBox(height: 15,),
+                             Center(child: Container(child: Center(child: Text('Monday', style: TextStyle(color:Colors.white.withOpacity(0.5)),)),width: 65,height: 25,decoration: BoxDecoration(color: Colors.black.withOpacity(0.3),borderRadius: BorderRadius.circular(30)),)),
+                            const SizedBox(height: 5,),
+                            const Sender(message: 'fine sir', time: '15:12PM'),
+                            const SizedBox(height: 10,),
+                            const Reciever(message: 'have u completed today\'s task', time: '15:12PM'),
+                            const SizedBox(height: 15,),
+                             Center(child: Container(child: Center(child: Text('Tuesday',style: TextStyle(color:Colors.white.withOpacity(0.5)),)),width: 65,height: 25,decoration: BoxDecoration(color: Colors.black.withOpacity(0.3),borderRadius: BorderRadius.circular(30)),)),
+                            const SizedBox(height: 5,),
+                            const Sender(message: 'yes sir', time: '15:12PM'),
+                            const SizedBox(height: 10,),
+                            const Reciever(message: 'Good', time: '15:12PM'),
+                           Center(child: Container(child: Center(child: Text('Wednesday',style: TextStyle(color:Colors.white.withOpacity(0.5)),)),width: 80,height: 25,decoration: BoxDecoration(color: Colors.black.withOpacity(0.3),borderRadius: BorderRadius.circular(30)),)),
+                            const SizedBox(height: 5,),
+                            const Sender(message: 'ok sir', time: '15:12PM'),
+                            const SizedBox(height: 10,),
+                            const Reciever(message: 'ok ', time: '15:12PM'),
+                            const SizedBox(height: 15,),
+                             Center(child: Container(child: Center(child: Text('Yesterday',style: TextStyle(color:Colors.white.withOpacity(0.5)),)),width: 75,height: 25,decoration: BoxDecoration(color: Colors.black.withOpacity(0.3),borderRadius: BorderRadius.circular(30)),)),
+                            const SizedBox(height: 5,),
+                            const Sender(message: 'Sir, should i get the task on the tomorrow morning', time: '15:12PM'),
+                            const SizedBox(height: 10,),
+                            const Reciever(message: 'yes i will give the task tomorrow meet me in the office', time: '15:12PM'),
+                            const SizedBox(height: 15,),
+                            Center(child: Container(child: Center(child: Text('Today',style: TextStyle(color: Colors.white.withOpacity(0.5)),)),width: 55,height: 25,decoration: BoxDecoration(color: Colors.black.withOpacity(0.3),borderRadius: BorderRadius.circular(30)),)),
+                            const SizedBox(height: 5,),
+                            const Sender(message: 'sure sit thank u 😊', time: '15:12PM'),
+                          ],
+                        );
+               }
+               )
+               ),
+               SizedBox(height: 10,),
+               Row(
+                 children: [
+                   Padding(
+                     padding: const EdgeInsets.all(6.0),
+                     child: Container(
+                       height: 50,
+                       width: 330,
+                       decoration: BoxDecoration(
+                         color: Colors.grey.withOpacity(0.9),
+                         borderRadius: BorderRadius.all(
+                            Radius.circular(30),
+                         ),
                        ),
-                     ),
-                     child: Row(
-                       children: [
-                         IconButton(onPressed: (){}, icon: Icon(Icons.emoji_emotions_outlined,color: Colors.black,)),
-                          SizedBox(width: 5,),
-                          Expanded(
-                            child: TextField(
-                              cursorHeight: 18,
-                              autocorrect: true,
-                              cursorColor: Colors.black,
-                              controller: _controller,
-                              decoration: InputDecoration(
-                                hintText: 'Type a message',
-                                border: InputBorder.none,
-                                hintStyle: TextStyle(
-                                  color: Colors.black.withOpacity(0.5),
+                       child: Row(
+                         children: [
+                           IconButton(onPressed: (){}, icon: Icon(Icons.emoji_emotions_outlined,color: Colors.black,)),
+                            SizedBox(width: 5,),
+                            Expanded(
+                              child: TextField(
+                                cursorHeight: 18,
+                                autocorrect: true,
+                                cursorColor: Colors.black,
+                                controller: _controller,
+                                decoration: InputDecoration(
+                                  hintText: 'Type a message',
+                                  border: InputBorder.none,
+                                  hintStyle: TextStyle(
+                                    color: Colors.black.withOpacity(0.5),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          IconButton(onPressed: (){}, icon: Icon(Icons.attach_file,color: Colors.black,)),
-                          SizedBox(width: 5,),
-                          IconButton(onPressed: (){}, icon: Icon(Icons.currency_rupee,color: Colors.black,)),
-                         SizedBox(width: 5,),
-                         IconButton(onPressed: (){}, icon: Icon(Icons.camera_alt,color: Colors.black,)),
-                       ],
+                            IconButton(onPressed: (){}, icon: Icon(Icons.attach_file,color: Colors.black,)),
+                            SizedBox(width: 5,),
+                            IconButton(onPressed: (){}, icon: Icon(Icons.currency_rupee,color: Colors.black,)),
+                           SizedBox(width: 5,),
+                           IconButton(onPressed: (){}, icon: Icon(Icons.camera_alt,color: Colors.black,)),
+                         ],
+                       ),
                      ),
                    ),
-                 ),
-                 CircleAvatar(
-                    backgroundColor: Colors.greenAccent,
-                    radius: 25,
-                    child: Icon(
-                      Icons.mic,
-                      color: Colors.black.withOpacity(0.9),
-                      size: 25,
-                    ),
-                 )
+                   CircleAvatar(
+                      backgroundColor: Colors.greenAccent,
+                      radius: 25,
+                      child: Icon(
+                        Icons.mic,
+                        color: Colors.black.withOpacity(0.9),
+                        size: 25,
+                      ),
+                   )
 
-               ],
-             )
-           ],
+                 ],
+               )
+             ],
+           ),
+    ],
          ),
     )
     );
