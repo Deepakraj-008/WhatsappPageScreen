@@ -108,6 +108,8 @@ class _ChatpageState extends State<Chatpage> {
                             Center(child: Container(child: Center(child: Text('Today',style: TextStyle(color: Colors.white.withOpacity(0.5)),)),width: 55,height: 25,decoration: BoxDecoration(color: Colors.black.withOpacity(0.3),borderRadius: BorderRadius.circular(30)),)),
                             const SizedBox(height: 5,),
                             const Sender(message: 'sure sit thank u 😊', time: '15:12PM'),
+                              Reciever(message: '', time: '12:23',img: 'https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg',),
+                              Sender(message: '', time: '12:23',img: 'https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg',)
                           ],
                         );
                }

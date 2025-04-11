@@ -3,18 +3,21 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Sender extends StatelessWidget {
-  final String message;
+  final dynamic message;
   final String time;
+  final dynamic img;
 
   const Sender({
     Key? key,
-    required this.message,
+    this.message,
     required this.time,
+    this.img
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Align(
+    return (message != null && img == null) ?
+      Align(
       alignment: Alignment.centerRight,
       child: ClipPath(
         clipBehavior: Clip.antiAlias,
@@ -33,15 +36,79 @@ class Sender extends StatelessWidget {
               ),
               color: const Color(0xFF005C4B),
             ),
-            child: Row(
+            child:
+            Row(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Flexible(
-                  child: Text(
-                    message,
-                    style: const TextStyle(color: Colors.white, fontSize: 15),
-                  ),
+                    child: Column(
+                      children: [
+                        if (message != null)
+                          Text(
+                            message!,
+                            style: const TextStyle(color: Colors.white),
+                          ),
+                        if (img != null)
+                          Image.network(
+                            img,
+                            fit: BoxFit.cover,
+                          ),
+                      ],
+                    )
+                ),
+                const SizedBox(width: 8),
+                Text(
+                  time,
+                  style: const TextStyle(color: Colors.white70, fontSize: 10),
+                ),
+                const SizedBox(width: 4),
+                const Icon(Icons.done_all, color: Colors.white70, size: 14),
+              ],
+            ),
+          ),
+        ),
+      ),
+    ) :
+    Align(
+      alignment: Alignment.centerRight,
+      child: ClipPath(
+        clipBehavior: Clip.antiAlias,
+        clipper: Sendermessage(),
+        child: Padding(
+          padding: const EdgeInsets.only(right: 1.0),
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 0),
+            margin: const EdgeInsets.only(top: 10),
+            constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.7),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(10),
+                bottomLeft: Radius.circular(10),
+                bottomRight: Radius.circular(25),
+              ),
+              color: const Color(0xFF005C4B),
+            ),
+            child:
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Flexible(
+                    child: Column(
+                      children: [
+                        if (message != null)
+                          Text(
+                            message!,
+                            style: const TextStyle(color: Colors.white),
+                          ),
+                        if (img != null)
+                          Image.network(
+                            img,
+                            fit: BoxFit.cover,
+                          ),
+                      ],
+                    )
                 ),
                 const SizedBox(width: 8),
                 Text(
@@ -80,17 +147,20 @@ class Sendermessage extends CustomClipper<Path> {
 }
 
 class Reciever extends StatelessWidget {
-  final String message;
+  final dynamic message;
   final String time;
+  final dynamic img;
 
   const Reciever({
     Key? key,
-    required this.message,
+     this.message,
     required this.time,
+    this.img
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+
     final maxBubbleWidth = MediaQuery.of(context).size.width * 0.7;
     return Align(
       alignment: Alignment.centerLeft,
@@ -119,10 +189,20 @@ class Reciever extends StatelessWidget {
                   Flexible(
                     child: Padding(
                       padding: const EdgeInsets.only(left: 8.0),
-                      child: Text(maxLines: 4,
-                        message,
-                        style: const TextStyle(color: Colors.white, fontSize: 15),
-                      ),
+                      child: Column(
+                        children: [
+                          if (message != null)
+                            Text(
+                              message!,
+                              style: const TextStyle(color: Colors.white),
+                            ),
+                          if (img != null)
+                            Image.network(
+                              img,
+                              fit: BoxFit.cover,
+                            ),
+                        ],
+                      )
                     ),
                   ),
                   const SizedBox(width: 8),
