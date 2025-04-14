@@ -22,50 +22,54 @@ class Sender extends StatelessWidget {
       child: ClipPath(
         clipBehavior: Clip.antiAlias,
         clipper: Sendermessage(),
-        child: Padding(
-          padding: const EdgeInsets.only(right: 1.0),
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-            margin: const EdgeInsets.only(top: 10),
-            constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.7),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(10),
-                bottomLeft: Radius.circular(10),
-                bottomRight: Radius.circular(25),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+          margin: const EdgeInsets.only(top: 10),
+          constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.7),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(10),
+              bottomLeft: Radius.circular(10),
+              bottomRight: Radius.circular(25),
+            ),
+            color: const Color(0xFF005C4B),
+          ),
+          child:
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Flexible(
+                  child: Column(
+                    children: [
+                      if (message != null)
+                        Text(
+                          message!,
+                          style: const TextStyle(color: Colors.white),
+                        ),
+                      if (img != null)
+                        Container(
+                            width: 280,
+                            height: 350,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              image: DecorationImage(
+                                image: NetworkImage(img,),
+                                fit: BoxFit.cover,
+                              ),
+                            )
+                        ),
+                    ],
+                  )
               ),
-              color: const Color(0xFF005C4B),
-            ),
-            child:
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Flexible(
-                    child: Column(
-                      children: [
-                        if (message != null)
-                          Text(
-                            message!,
-                            style: const TextStyle(color: Colors.white),
-                          ),
-                        if (img != null)
-                          Image.network(
-                            img,
-                            fit: BoxFit.cover,
-                          ),
-                      ],
-                    )
-                ),
-                const SizedBox(width: 8),
-                Text(
-                  time,
-                  style: const TextStyle(color: Colors.white70, fontSize: 10),
-                ),
-                const SizedBox(width: 4),
-                const Icon(Icons.done_all, color: Colors.white70, size: 14),
-              ],
-            ),
+              const SizedBox(width: 8),
+              Text(
+                time,
+                style: const TextStyle(color: Colors.white70, fontSize: 10),
+              ),
+              const SizedBox(width: 4),
+              const Icon(Icons.done_all, color: Colors.white70, size: 14),
+            ],
           ),
         ),
       ),
@@ -78,7 +82,7 @@ class Sender extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.only(right: 1.0),
           child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 0),
+            padding: const EdgeInsets.symmetric(horizontal:3, vertical: 3),
             margin: const EdgeInsets.only(top: 10),
             constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.7),
             decoration: BoxDecoration(
@@ -89,35 +93,43 @@ class Sender extends StatelessWidget {
               ),
               color: const Color(0xFF005C4B),
             ),
-            child:
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.end,
+            child: Stack(
               children: [
-                Flexible(
-                    child: Column(
-                      children: [
-                        if (message != null)
-                          Text(
-                            message!,
-                            style: const TextStyle(color: Colors.white),
-                          ),
-                        if (img != null)
-                          Image.network(
-                            img,
-                            fit: BoxFit.cover,
-                          ),
-                      ],
-                    )
-                ),
-                const SizedBox(width: 8),
+              if (message != null)
                 Text(
-                  time,
-                  style: const TextStyle(color: Colors.white70, fontSize: 10),
+                  message!,
+                  style: const TextStyle(color: Colors.white),
                 ),
-                const SizedBox(width: 4),
-                const Icon(Icons.done_all, color: Colors.white70, size: 14),
-              ],
+              if (img != null)
+                Padding(
+                  padding: const EdgeInsets.only(right:9.0),
+                  child: Container(
+                      width: 280,
+                      height: 350,
+                      decoration: BoxDecoration(border: Border.all(color: Colors.black.withOpacity(0.6)),
+                        borderRadius: BorderRadius.circular(10),
+                        image: DecorationImage(image: NetworkImage(
+                          img,
+                        ),
+                          fit: BoxFit.cover,
+                        ),
+                      )
+                  ),
+                ),
+              Positioned(
+                top: 335,
+                  left: 200,
+                  child: Row(
+                children: [
+                  Text(
+                    time,
+                    style: const TextStyle(color: Colors.white, fontSize: 10,fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(width: 4),
+                  const Icon(Icons.done_all, color: Colors.white70, size: 14,weight: 20,),
+                ],
+              )),
+            ],
             ),
           ),
         ),
@@ -135,7 +147,7 @@ class Sendermessage extends CustomClipper<Path> {
     path.lineTo(size.width - 10, 0);
     path.quadraticBezierTo(size.width , 0, size.width ,0);
     path.lineTo(size.width+size.height, -90);
-    path.lineTo(size.width-10,25);
+    path.lineTo(size.width-10,20);
     path.lineTo(size.width-10, size.height);
     path.lineTo(0, size.height);
     path.close();
@@ -153,16 +165,16 @@ class Reciever extends StatelessWidget {
 
   const Reciever({
     Key? key,
-     this.message,
+    this.message,
     required this.time,
     this.img
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
     final maxBubbleWidth = MediaQuery.of(context).size.width * 0.7;
-    return Align(
+    return (message != null && img == null) ?
+    Align(
       alignment: Alignment.centerLeft,
       child: ClipPath(
         clipBehavior: Clip.antiAlias,
@@ -188,21 +200,30 @@ class Reciever extends StatelessWidget {
                 children: [
                   Flexible(
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      child: Column(
-                        children: [
-                          if (message != null)
-                            Text(
-                              message!,
-                              style: const TextStyle(color: Colors.white),
-                            ),
-                          if (img != null)
-                            Image.network(
-                              img,
-                              fit: BoxFit.cover,
-                            ),
-                        ],
-                      )
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: Column(
+                          children: [
+                            if (message != null)
+                              Text(
+                                message!,
+                                style: const TextStyle(color: Colors.white),
+                              ),
+                            if (img != null)
+                              Container(
+                                  width: 280,
+                                  height: 350,
+                                  decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.black.withOpacity(0.6)),
+                                    borderRadius: BorderRadius.circular(10),
+                                    image: DecorationImage(image: NetworkImage(
+                                      img,
+                                    ),
+                                      fit: BoxFit.cover,
+                                    ),
+                                  )
+                              ),
+                          ],
+                        )
                     ),
                   ),
                   const SizedBox(width: 8),
@@ -212,6 +233,65 @@ class Reciever extends StatelessWidget {
                   ),
                 ],
               ),
+            ],
+          ),
+        ),
+      ),
+    ) :
+    Align(
+      alignment: Alignment.centerLeft,
+      child: ClipPath(
+        clipBehavior: Clip.antiAlias,
+        clipper: Recivermessage(),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
+          margin: const EdgeInsets.only(top: 4,),
+          constraints: BoxConstraints(maxWidth: maxBubbleWidth),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.only(
+              topRight: Radius.circular(10),
+              bottomLeft: Radius.circular(30),
+              bottomRight: Radius.circular(10),
+            ),
+            color: const Color(0xFF202C33),
+          ),
+          child: Stack(
+            children: [
+              if (message != null)
+                Text(
+                  message!,
+                  style: const TextStyle(color: Colors.white),
+                ),
+              if (img != null)
+                Padding(
+                  padding: const EdgeInsets.only(left: 15.0),
+                  child: Container(
+                      width: MediaQuery.of(context).size.width * 0.75,                // 280,
+                      height: 350,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black.withOpacity(0.6)),
+                      borderRadius: BorderRadius.circular(10),
+                      image: DecorationImage(image: NetworkImage(
+                      img,
+                    ),
+                    fit: BoxFit.cover,
+                    ),
+                    )
+                  ),
+                ),
+              Positioned(
+                  bottom: 10,
+                  right: 10,
+                  child: Row(
+                    children: [
+                      Text(
+                        time,
+                        style: const TextStyle(color: Colors.white,
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  )),
             ],
           ),
         ),

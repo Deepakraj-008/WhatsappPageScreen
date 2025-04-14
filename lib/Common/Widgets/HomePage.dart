@@ -223,7 +223,7 @@ import 'package:flutter/material.dart';
             showSelectedLabels: true,
             type: BottomNavigationBarType.fixed,
             unselectedItemColor: Colors.white,
-            backgroundColor: Colors.black.withOpacity(0.5),
+            backgroundColor: Colors.black,//.withOpacity(0.5),
             selectedLabelStyle: TextStyle(
               color: Colors.white.withOpacity(0.9),
               fontSize: 15,
@@ -243,6 +243,8 @@ import 'package:flutter/material.dart';
               BottomNavigationBarItem(
                 icon: Icon(Icons.thumbs_up_down_outlined),
                 label: 'Updates',
+
+                activeIcon: Icon(Icons.chat_bubble),
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.groups),
