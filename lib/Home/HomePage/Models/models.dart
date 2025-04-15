@@ -21,7 +21,7 @@ class Sender extends StatelessWidget {
       alignment: Alignment.centerRight,
       child: ClipPath(
         clipBehavior: Clip.antiAlias,
-        clipper: Sendermessage(),
+        clipper: SenderMessage(),
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
           margin: const EdgeInsets.only(top: 10),
@@ -32,7 +32,7 @@ class Sender extends StatelessWidget {
               bottomLeft: Radius.circular(10),
               bottomRight: Radius.circular(25),
             ),
-            color: const Color(0xFF005C4B),
+            color: const Color(0xFF134D37),
           ),
           child:
           Row(
@@ -78,9 +78,9 @@ class Sender extends StatelessWidget {
       alignment: Alignment.centerRight,
       child: ClipPath(
         clipBehavior: Clip.antiAlias,
-        clipper: Sendermessage(),
+        clipper: SenderMessage(),
         child: Padding(
-          padding: const EdgeInsets.only(right: 1.0),
+          padding: const EdgeInsets.only(right: 0.0),
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal:3, vertical: 3),
             margin: const EdgeInsets.only(top: 10),
@@ -91,7 +91,7 @@ class Sender extends StatelessWidget {
                 bottomLeft: Radius.circular(10),
                 bottomRight: Radius.circular(25),
               ),
-              color: const Color(0xFF005C4B),
+              color: const Color(0xFF134D37),
             ),
             child: Stack(
               children: [
@@ -137,19 +137,39 @@ class Sender extends StatelessWidget {
     );
   }
 }
-class Sendermessage extends CustomClipper<Path> {
+class SenderMessage extends CustomClipper<Path> {
   @override
-
   Path getClip(Size size) {
-    final path = Path();
-    path.moveTo(0, 0);
-    path.lineTo(size.width - 10, 0);
-    path.lineTo(size.width - 10, 0);
-    path.quadraticBezierTo(size.width , 0, size.width ,0);
-    path.lineTo(size.width+size.height, -90);
-    path.lineTo(size.width-10,20);
-    path.lineTo(size.width-10, size.height);
-    path.lineTo(0, size.height);
+    final double radius = 12;
+    final double tailHeight = 10;
+    final double tailWidth = 8;
+
+    final Path path = Path();
+
+    // Start from top-left corner
+    path.moveTo(0, radius);
+    path.quadraticBezierTo(0, 0, radius, 0);
+
+    // Top edge up to before tail
+    path.lineTo(size.width - tailWidth - radius, 0);
+    path.quadraticBezierTo(size.width - tailWidth, 0, size.width - tailWidth, radius);
+
+    // Now create the tail on top-right
+    path.lineTo(size.width - tailWidth, tailHeight);
+    path.lineTo(size.width, tailHeight / 2);
+    path.lineTo(size.width - tailWidth, tailHeight * 2);
+
+    // Right edge down
+    path.lineTo(size.width - tailWidth, size.height - radius);
+    path.quadraticBezierTo(size.width - tailWidth, size.height, size.width - tailWidth - radius, size.height);
+
+    // Bottom edge
+    path.lineTo(radius, size.height);
+    path.quadraticBezierTo(0, size.height, 0, size.height - radius);
+
+    // Close the path
+    path.lineTo(0, radius);
+
     path.close();
     return path;
   }
@@ -157,6 +177,29 @@ class Sendermessage extends CustomClipper<Path> {
   @override
   bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }
+
+// class Sendermessage extends CustomClipper<Path> {
+//   @override
+//
+//
+//
+//   Path getClip(Size size) {
+//     final path = Path();
+//     path.moveTo(0, 0);
+//     path.lineTo(size.width - 10, 0);
+//     path.lineTo(size.width - 10, 0);
+//     path.quadraticBezierTo(size.width , 0, size.width ,0);
+//     path.lineTo(size.width+size.height, -90);
+//     path.lineTo(size.width-10,20);
+//     path.lineTo(size.width-10, size.height);
+//     path.lineTo(0, size.height);
+//     path.close();
+//     return path;
+//   }
+//
+//   @override
+//   bool shouldReclip(CustomClipper<Path> oldClipper) => false;
+// }
 
 class Reciever extends StatelessWidget {
   final dynamic message;
@@ -189,7 +232,7 @@ class Reciever extends StatelessWidget {
               bottomLeft: Radius.circular(30),
               bottomRight: Radius.circular(10),
             ),
-            color: const Color(0xFF202C33),
+            color: const Color(0xFF1F272A),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -253,7 +296,7 @@ class Reciever extends StatelessWidget {
               bottomLeft: Radius.circular(30),
               bottomRight: Radius.circular(10),
             ),
-            color: const Color(0xFF202C33),
+            color: const Color(0xFF1F272A),
           ),
           child: Stack(
             children: [

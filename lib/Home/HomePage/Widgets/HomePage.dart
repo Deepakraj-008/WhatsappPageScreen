@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
   import 'package:get/get.dart';
-  import 'package:whatsappscreen/Common/Widgets/Chat.dart';
+
+import 'Chat.dart';
+import '../../Settings/Widgets/Settings.dart';
 
   class HomeScreen extends StatefulWidget {
     const HomeScreen({super.key});
@@ -25,9 +27,9 @@ import 'package:flutter/material.dart';
     Widget build(BuildContext context) {
       return SafeArea(
         child: Scaffold(
-          backgroundColor: Colors.black.withOpacity(0.5),
+          backgroundColor: Color(0xFF0B1014),
           appBar: AppBar(
-            backgroundColor: Colors.black.withOpacity(0.5),
+            backgroundColor: Color(0xFF0B1014),
             title: Text(
               'WhatsApp',
               style: TextStyle(
@@ -53,8 +55,58 @@ import 'package:flutter/material.dart';
               ),
               IconButton(
                 onPressed: () {
-
-                },
+                  final RelativeRect position=RelativeRect.fromLTRB(300, 86, 0, 0);
+                  showMenu(
+                      context: context,
+                      position: position,
+                      color: Color(0xFF252A2D),
+                      items: [
+                    PopupMenuItem(
+                      child: TextButton(
+                        onPressed: () {},
+                        child: Text("New group", style: TextStyle(color: Colors.white)),
+                      ),
+                    ),
+                    PopupMenuItem(
+                      child: TextButton(
+                        onPressed: () {},
+                        child: Text("New broadcast", style: TextStyle(color: Colors.white)),
+                      ),
+                    ),
+                    PopupMenuItem(
+                      child: TextButton(
+                        onPressed: () {},
+                        child: Text("Linked devices", style: TextStyle(color: Colors.white)),
+                      ),
+                    ),
+                    PopupMenuItem(
+                      child: TextButton(
+                        onPressed: () {},
+                        child: Text("Starred messages", style: TextStyle(color: Colors.white)),
+                      ),
+                    ),
+                    PopupMenuItem(
+                      child: TextButton(
+                        onPressed: () {},
+                        child: Text("Payments", style: TextStyle(color: Colors.white)),
+                      ),
+                    ),
+                    PopupMenuItem(
+                      child: TextButton(
+                        onPressed: () {},
+                        child: Text("Read all", style: TextStyle(color: Colors.white)),
+                      ),
+                    ),
+                    PopupMenuItem(
+                      child: TextButton(
+                        onPressed: () {
+                          Get.to(Settings());
+                        },
+                        child: Text("Settings", style: TextStyle(color: Colors.white)),
+                      ),
+                    ),
+                  ]);
+                  },
                 icon: Icon(
                   Icons.more_vert,
                   color: Colors.white,
@@ -67,30 +119,31 @@ import 'package:flutter/material.dart';
             itemBuilder: (context, index) {
               if (index == 0) {
                 return Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8.0,vertical: 10),
+                  padding: EdgeInsets.only(left: 8.0,bottom: 20,),
                   child: Container(
                     height: 50,
                     decoration: BoxDecoration(
-                      color: Colors.grey.withOpacity(0.2),
+                      color: const Color(0xFF23282C),
                       borderRadius: BorderRadius.circular(30),
+                      border: Border.all(color: Color(0xFF0B1014))
                     ),
                     child: TextField(
                       controller: _textController,
-                      cursorColor: Colors.grey.withOpacity(0.7),
+                      cursorColor: const Color(0xFF666E71),
                       keyboardAppearance: Brightness.dark,
                       style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
-                        border: OutlineInputBorder(
+                        border: OutlineInputBorder(borderSide: BorderSide.none,
                           borderRadius: BorderRadius.circular(30),
                         ),
                         hintText: 'Search...',
-                        prefixIcon: Icon(
+                        prefixIcon: const Icon(
                           Icons.search,
-                          color: Colors.grey.withOpacity(0.6),
+                          color: Color(0xFF666E71),
                         ),
                         hintStyle: TextStyle(
-                          color: Colors.grey.withOpacity(0.6),
-                          fontSize: 18,
+                          color: Color(0xFF666E71),
+                          fontSize: 16,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -99,7 +152,7 @@ import 'package:flutter/material.dart';
                 );
               } else if (index == 1) {
                 return SizedBox(
-                  height: 40,
+                  height: 35,
                   child: ListView.separated(
                     scrollDirection: Axis.horizontal,
                     itemCount: types.length,
@@ -112,7 +165,7 @@ import 'package:flutter/material.dart';
                             height: 40,
                             width: 70,
                             decoration: BoxDecoration(
-                              color: Colors.grey.withOpacity(0.2),
+                              color: Color(0xFF23282D),
                               borderRadius: BorderRadius.circular(30),
                             ),
                             child: TextButton(
@@ -124,7 +177,7 @@ import 'package:flutter/material.dart';
                               child: Text(
                                 types[index],
                                 style: TextStyle(
-                                  color: Colors.white.withOpacity(0.9),
+                                  color: Color(0xFF666E71),
                                   fontSize: 13,
                                 ),
                               ),
@@ -145,13 +198,13 @@ import 'package:flutter/material.dart';
                         SizedBox(width: 10),
                         Icon(
                           Icons.add_card_sharp,
-                          color: Colors.white.withOpacity(0.9),
+                          color: Color(0xFF666E71),
                         ),
                         SizedBox(width: 30),
                         Text(
                           'Archived',
                           style: TextStyle(
-                            color: Colors.white.withOpacity(0.9),
+                            color: Color(0xFF666E71),
                             fontSize: 15,
                           ),
                         ),
@@ -159,7 +212,7 @@ import 'package:flutter/material.dart';
                         Text(
                           '41',
                           style: TextStyle(
-                            color: Colors.white.withOpacity(0.9),
+                            color: Color(0xFF666E71),
                             fontSize: 15,
                           ),
                         ),
@@ -184,7 +237,7 @@ import 'package:flutter/material.dart';
                       )
                   ),
                   title: Text(
-                    'Name',
+                    'Username',
                     style: TextStyle(
                       color: Colors.white.withOpacity(0.9),
                       fontSize: 20,
@@ -192,9 +245,9 @@ import 'package:flutter/material.dart';
                     ),
                   ),
                   subtitle: Text(
-                    'chast Now ',
+                    'chat Now ',
                     style: TextStyle(
-                      color: Colors.white.withOpacity(0.6),
+                      color: Color(0xFF666E71),
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
                     ),
@@ -202,7 +255,7 @@ import 'package:flutter/material.dart';
                   trailing: Text(
                     'Yesterdays',
                     style: TextStyle(
-                      color: Colors.white.withOpacity(0.6),
+                      color: Color(0xFF666E71),
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
                     ),
@@ -223,7 +276,7 @@ import 'package:flutter/material.dart';
             showSelectedLabels: true,
             type: BottomNavigationBarType.fixed,
             unselectedItemColor: Colors.white,
-            backgroundColor: Colors.black,//.withOpacity(0.5),
+            backgroundColor: Color(0xFF0B1014),
             selectedLabelStyle: TextStyle(
               color: Colors.white.withOpacity(0.9),
               fontSize: 15,
@@ -236,15 +289,14 @@ import 'package:flutter/material.dart';
             ),
             items: [
               BottomNavigationBarItem(
-                icon: Icon(Icons.chat_rounded),
+                icon: Icon(Icons.chat_outlined),
                 label: 'Chats',
-                activeIcon: Icon(Icons.chat_bubble),
+                activeIcon: Icon(Icons.mark_unread_chat_alt_outlined),
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.thumbs_up_down_outlined),
                 label: 'Updates',
-
-                activeIcon: Icon(Icons.chat_bubble),
+              //  activeIcon: Icon(Icons.chat_bubble),
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.groups),
@@ -259,7 +311,8 @@ import 'package:flutter/material.dart';
           floatingActionButton: FloatingActionButton(
             onPressed: () {},
             backgroundColor: Colors.green.shade500,
-            child: Icon(Icons.mark_unread_chat_alt_outlined),
+            child: Stack(children: [Icon(Icons.messenger,size: 25,),Positioned(bottom: 8,right: 5,child: Icon(Icons.add,size: 15,color: Colors.green,))]),
+
           ),
         ),
       );

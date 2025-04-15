@@ -38,6 +38,7 @@ dependencies:
   get: ^4.7.2
   flutter_chat_bubble: ^2.0.2
   auto_size_text: ^3.0.0
+  image_picker: ^1.1.2
 
 dev_dependencies:
   flutter_test:
@@ -57,6 +58,7 @@ dev_dependencies:
 flutter:
   assets:
     - assets/images/bgimg.png
+    - assets/images/instalogo.png
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

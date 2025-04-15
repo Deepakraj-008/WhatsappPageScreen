@@ -2,7 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
-import 'package:whatsappscreen/Core/Models/models.dart';
+
+import '../Models/models.dart';
 
 class Chatpage extends StatefulWidget {
   const Chatpage({super.key});
@@ -39,7 +40,7 @@ class _ChatpageState extends State<Chatpage> {
           backgroundColor: Colors.grey.withOpacity(0.3),
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: Colors.black,
+        backgroundColor: Color(0xFF0B1014),
         toolbarHeight: 60,
         actions: [
          IconButton(onPressed: (){
@@ -65,12 +66,12 @@ class _ChatpageState extends State<Chatpage> {
           IconButton(onPressed: (){}, icon: Icon(Icons.call,color: Colors.white,)),
           IconButton(onPressed: ()
           {
-            final RelativeRect position=RelativeRect.fromLTRB(300, 86, 0, 0);
+            //final RelativeRect position=RelativeRect.fromLTRB(10, 86, 0, 0);
             showMenu(
               context: context,
-              position: position,
-              menuPadding: EdgeInsets.all(0),
-              color: Colors.black,
+             position: RelativeRect.fromLTRB(100, 80, 0, 0),
+             // position: position,
+              color: Color(0xFF252A2D),
               items: [
                 PopupMenuItem(
                   child: TextButton(
@@ -119,7 +120,7 @@ class _ChatpageState extends State<Chatpage> {
                     onPressed: () {},
                     child: Row(
                       children: [
-                        Text("more ", style: TextStyle(color: Colors.white)),Spacer(),
+                        Text("more ", style: TextStyle(color: Colors.white)),SizedBox(width: 90,),
                         Icon(Icons.arrow_right,color: Colors.white,)
                       ],
                     ),
@@ -226,7 +227,7 @@ class _ChatpageState extends State<Chatpage> {
                          height: 50,
                          width: 330,
                          decoration: BoxDecoration(
-                           color: Colors.grey.withOpacity(0.9),
+                           color: Color(0xFF1F272A),
                            borderRadius: BorderRadius.all(
                               Radius.circular(30),
                            ),
@@ -234,19 +235,19 @@ class _ChatpageState extends State<Chatpage> {
                          child: Row(
                            children: [
                              IconButton(onPressed: (){},
-                                 icon: Icon(Icons.emoji_emotions_outlined,color: Colors.black,)
+                                 icon: Icon(Icons.emoji_emotions_outlined, color: Color(0xFF757D80),)
                              ),
                               Expanded(
                                 child: TextField(
                                   cursorHeight: 18,
                                   autocorrect: true,
-                                  cursorColor: Colors.black,
+                                  cursorColor: Color(0xFF757D80),
                                   controller: _controller,
                                   decoration: InputDecoration(
                                     hintText: 'Type a message',
                                     border: InputBorder.none,
                                     hintStyle: TextStyle(
-                                      color: Colors.black.withOpacity(0.5),
+                                      color: Color(0xFF757D80),
                                     ),
                                   ),
                                 ),
@@ -254,13 +255,13 @@ class _ChatpageState extends State<Chatpage> {
                               indexx ?
                               IconButton(
                                 onPressed: () {},
-                                icon: Icon(Icons.attach_file, color: Colors.black),
+                                icon: Icon(Icons.attach_file,color: Color(0xFF757D80)),
                               ) :
                               Row(
                                 children: [
-                                  IconButton(onPressed: (){}, icon: Icon(Icons.attach_file,color: Colors.black,)),
-                                  IconButton(onPressed: (){}, icon: Icon(Icons.currency_rupee,color: Colors.black,)),
-                                  IconButton(onPressed: (){}, icon: Icon(Icons.camera_alt,color: Colors.black,)),
+                                  IconButton(onPressed: (){}, icon: Icon(Icons.attach_file,color: Color(0xFF757D80),)),
+                                  IconButton(onPressed: (){}, icon: Icon(Icons.currency_rupee,color: Color(0xFF757D80))),
+                                  IconButton(onPressed: (){}, icon: Icon(Icons.camera_alt,color: Color(0xFF757D80))),
                                 ],
                               )
 

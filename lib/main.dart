@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:whatsappscreen/Common/Widgets/Chat.dart';
 
-import 'Common/Widgets/HomePage.dart';
+import 'Home/HomePage/Widgets/HomePage.dart';
+
 
 void main() {
   runApp(const MyApp());
