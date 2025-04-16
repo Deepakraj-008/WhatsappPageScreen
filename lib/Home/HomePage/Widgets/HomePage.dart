@@ -106,6 +106,7 @@ import '../../Settings/Widgets/Settings.dart';
                       ),
                     ),
                   ]);
+                  //Navigator.pop(context);
                   },
                 icon: Icon(
                   Icons.more_vert,
