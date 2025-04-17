@@ -14,7 +14,8 @@ class _ProfilepagesState extends State<Profilepages> {
 
   File? img;
   final picker = ImagePicker();
-  int? cnt,c=25;
+  int? cnt;
+  int c=25;
 
   Future getdata() async {
     final pickerimage = await picker.pickImage(source: ImageSource.gallery);
@@ -27,23 +28,23 @@ class _ProfilepagesState extends State<Profilepages> {
 
   final _controller = TextEditingController();
   final emoji = TextEditingController();
-  File? camera;
-  final cam = ImagePicker();
+  //final cam = ImagePicker();
 
   Future data() async {
-    final pickerimages = await cam.pickImage(source: ImageSource.camera);
+    final pickerimages = await picker.pickImage(source: ImageSource.camera);
     setState(() {
       if (pickerimages != null) {
-        camera = File(pickerimages.path);
+        img = File(pickerimages.path);
       }
     });
   }
 
   void count() {
     setState(() {
-      cnt = c! - _controller.text.length;
+      cnt = c - _controller.text.length;
     });
   }
+
   @override
   void initState() {
     super.initState();
@@ -54,7 +55,7 @@ class _ProfilepagesState extends State<Profilepages> {
 
   @override
   Widget build(BuildContext context) {
-    final height =MediaQuery.of(context).size.height;
+    final height  =MediaQuery.of(context).size.height;
     final width =MediaQuery.of(context).size.width;
 
     List<IconData> icon = [
@@ -91,16 +92,23 @@ class _ProfilepagesState extends State<Profilepages> {
               Center(
                 child: Stack(
                   children: [
+                    (img ==null) ?
                     Container(
                       height: 180,
                       width: 180,
                       decoration: BoxDecoration(
                         image: DecorationImage(
-                            image: NetworkImage(
-                              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDCsqRYLAFDdL4Ix_AHai7kNVyoPV9Ssv1xg&s',),
+                            image: NetworkImage( 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDCsqRYLAFDdL4Ix_AHai7kNVyoPV9Ssv1xg&s' ),
                             fit: BoxFit.cover), shape: BoxShape.circle,
-                      ),
-
+                      ) ,
+                    ) : (img != null)?
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(125),
+                          child: Image.file(img!,height: 250,width: 250,fit: BoxFit.fill,),
+                        ) :
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(125),
+                      child: Image.file(img!,height: 250,width: 250,fit: BoxFit.fill,),
                     ),
                     Positioned(
                         bottom: 10,
@@ -142,48 +150,37 @@ class _ProfilepagesState extends State<Profilepages> {
                                             ),
                                             Center(
                                               child: Row(
-                                                mainAxisAlignment: MainAxisAlignment
-                                                    .spaceEvenly,
+                                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                                 children: [
                                                   Column(
                                                     children: [
-                                                      IconButton(onPressed: data
-                                                        ,
-                                                        icon: Icon(Icons
-                                                            .camera_alt_outlined),
+                                                      IconButton(onPressed: data,
+                                                        icon: Icon(Icons.camera_alt_outlined),
                                                         color: Colors.green,),
                                                       SizedBox(height: 10,),
                                                       TextButton(onPressed: () {
-                                                        (camera == null)
-                                                            ? Text(
-                                                            "Camera not supported")
-                                                            : Image.file(
-                                                            camera!);
+                                                        (img == null)
+                                                            ? Text("Camera not supported")
+                                                            : Image.file(img!);
                                                       },
                                                           child: Text("Camera",
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .grey),)),
+                                                            style: TextStyle(color: Colors.grey),)),
                                                     ],
                                                   ), SizedBox(width: 25,),
                                                   Column(
                                                     children: [
                                                       IconButton(
-                                                        onPressed: getdata
-                                                        ,
+                                                        onPressed: getdata,
                                                         icon: Icon(Icons.image),
                                                         color: Colors.green,),
                                                       SizedBox(height: 10,),
                                                       TextButton(onPressed: () {
                                                         (img == null)
-                                                            ? Text(
-                                                            "Gallary not supported")
+                                                            ? Text("Gallary not supported")
                                                             : Image.file(img!);
                                                       },
                                                           child: Text("Gallery",
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .grey),)),
+                                                            style: TextStyle(color: Colors.grey),)),
                                                     ],
                                                   ), SizedBox(width: 25,),
                                                   Column(
@@ -195,9 +192,7 @@ class _ProfilepagesState extends State<Profilepages> {
                                                       ),
                                                       SizedBox(height: 10,),
                                                       Text("Avatar",
-                                                        style: TextStyle(
-                                                            color: Colors
-                                                                .grey),),
+                                                        style: TextStyle(color: Colors.grey),),
                                                     ],
                                                   )
                                                 ],
@@ -247,7 +242,9 @@ class _ProfilepagesState extends State<Profilepages> {
                                               style: TextStyle(color: Colors.white.withOpacity(0.3)),
                                               autocorrect: true,
                                               onChanged: (value) {
-                                                count();
+                                                setState(() {
+                                                  count();
+                                                });
                                               },
                                               controller: _controller,
                                               decoration: InputDecoration(
@@ -271,10 +268,11 @@ class _ProfilepagesState extends State<Profilepages> {
                                       Row(crossAxisAlignment: CrossAxisAlignment.end,mainAxisAlignment: MainAxisAlignment.end,
                                         children: [
                                           TextButton(onPressed: (){
-
+                                            _controller.clear();
                                         }, child: Text("Cancel",style: TextStyle(color: Colors.greenAccent),)),SizedBox(width: 25,),
-                                          TextButton(onPressed: (){
-
+                                          TextButton(
+                                              onPressed: (){
+                                            _controller.clear();
                                           }, child: Text("Save",style: TextStyle(color: Colors.greenAccent),)),SizedBox(width: 10,),
                                         ]
                                       )

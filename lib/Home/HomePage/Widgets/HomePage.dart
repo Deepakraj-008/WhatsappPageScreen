@@ -55,7 +55,7 @@ import '../../Settings/Widgets/Settings.dart';
               ),
               IconButton(
                 onPressed: () {
-                  final RelativeRect position=RelativeRect.fromLTRB(300, 86, 0, 0);
+                  final RelativeRect position=RelativeRect.fromLTRB(2, 86, 0, 0);
                   showMenu(
                       context: context,
                       position: position,
@@ -92,19 +92,19 @@ import '../../Settings/Widgets/Settings.dart';
                       ),
                     ),
                     PopupMenuItem(
-                      child: TextButton(
-                        onPressed: () {},
+                      //onTap: ()=>,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 10.0),
                         child: Text("Read all", style: TextStyle(color: Colors.white)),
-                      ),
-                    ),
+                      ),    ),
                     PopupMenuItem(
-                      child: TextButton(
-                        onPressed: () {
-                          Get.to(Settings());
-                        },
-                        child: Text("Settings", style: TextStyle(color: Colors.white)),
+                      onTap: ()=> Get.to(Settings()),
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 10.0),
+                          child: Text("Settings", style: TextStyle(color: Colors.white)),
+                        ),
                       ),
-                    ),
+
                   ]);
                   //Navigator.pop(context);
                   },
