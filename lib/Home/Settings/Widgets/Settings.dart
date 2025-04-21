@@ -2,7 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:whatsappscreen/Profile/Widgets/ProfilePage.dart';
+
+import '../../../Profile/Widgets/ProfilePage.dart';
 
 class Settings extends StatefulWidget {
   const Settings({super.key});

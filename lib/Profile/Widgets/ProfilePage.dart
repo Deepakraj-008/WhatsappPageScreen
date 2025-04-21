@@ -1,7 +1,12 @@
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:image_picker/image_picker.dart';
+
+import 'ProfilePic.dart';
+
 
 class Profilepages extends StatefulWidget {
   const Profilepages({super.key});
@@ -44,6 +49,7 @@ class _ProfilepagesState extends State<Profilepages> {
       cnt = c - _controller.text.length;
     });
   }
+  
 
   @override
   void initState() {
@@ -90,125 +96,128 @@ class _ProfilepagesState extends State<Profilepages> {
           body: Column(
             children: [
               Center(
-                child: Stack(
-                  children: [
-                    (img ==null) ?
-                    Container(
-                      height: 180,
-                      width: 180,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: NetworkImage( 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDCsqRYLAFDdL4Ix_AHai7kNVyoPV9Ssv1xg&s' ),
-                            fit: BoxFit.cover), shape: BoxShape.circle,
-                      ) ,
-                    ) : (img != null)?
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(125),
-                          child: Image.file(img!,height: 250,width: 250,fit: BoxFit.fill,),
-                        ) :
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(125),
-                      child: Image.file(img!,height: 250,width: 250,fit: BoxFit.fill,),
-                    ),
-                    Positioned(
-                        bottom: 10,
-                        right: 10,
-                        child: CircleAvatar(
-                          child: IconButton(
-                              onPressed: () {
-                                showModalBottomSheet(
-                                    context: context,
-                                    backgroundColor: Color(0xFF0B1014),
-                                    builder: (context) {
-                                      return Container(
-                                        height: 200,
-                                        child: Column(
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 10.0,
-                                                  top: 10,
-                                                  right: 10),
-                                              child: Row(
-                                                children: [
-                                                  IconButton(onPressed: () {
-                                                    Navigator.pop(context);
-                                                  },
-                                                    icon: Icon(Icons.close,
-                                                      color: Colors.grey,),),
-                                                  Spacer(),
-                                                  Text('Profile Photo',
-                                                    style: TextStyle(
-                                                        color: Colors.white),),
-                                                  Spacer(),
-                                                  IconButton(onPressed: () {},
-                                                    icon: Icon(
-                                                      Icons.delete_outline,
-                                                      color: Colors.grey,),),
-                                                ],
+                child: GestureDetector(
+                  onTap: ()=>  Get.to( Profilepicss()),
+                  child: Stack(
+                    children: [
+                      (img ==null) ?
+                      Container(
+                        height: 180,
+                        width: 180,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: NetworkImage( 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDCsqRYLAFDdL4Ix_AHai7kNVyoPV9Ssv1xg&s' ),
+                              fit: BoxFit.cover), shape: BoxShape.circle,
+                        ) ,
+                      ) : (img != null)?
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(125),
+                            child: Image.file(img!,height: 180,width: 180,fit: BoxFit.cover,),
+                          ) :
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(125),
+                        child: Image.file(img!,height: 180,width: 180,fit: BoxFit.cover,),
+                      ),
+                      Positioned(
+                          bottom: 10,
+                          right: 10,
+                          child: CircleAvatar(
+                            child: IconButton(
+                                onPressed: () {
+                                  showModalBottomSheet(
+                                      context: context,
+                                      backgroundColor: Color(0xFF0B1014),
+                                      builder: (context) {
+                                        return Container(
+                                          height: 200,
+                                          child: Column(
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 10.0,
+                                                    top: 10,
+                                                    right: 10),
+                                                child: Row(
+                                                  children: [
+                                                    IconButton(onPressed: () {
+                                                      Navigator.pop(context);
+                                                    },
+                                                      icon: Icon(Icons.close,
+                                                        color: Colors.grey,),),
+                                                    Spacer(),
+                                                    Text('Profile Photo',
+                                                      style: TextStyle(
+                                                          color: Colors.white),),
+                                                    Spacer(),
+                                                    IconButton(onPressed: () {},
+                                                      icon: Icon(
+                                                        Icons.delete_outline,
+                                                        color: Colors.grey,),),
+                                                  ],
+                                                ),
                                               ),
-                                            ),
-                                            Center(
-                                              child: Row(
-                                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                                children: [
-                                                  Column(
-                                                    children: [
-                                                      IconButton(onPressed: data,
-                                                        icon: Icon(Icons.camera_alt_outlined),
-                                                        color: Colors.green,),
-                                                      SizedBox(height: 10,),
-                                                      TextButton(onPressed: () {
-                                                        (img == null)
-                                                            ? Text("Camera not supported")
-                                                            : Image.file(img!);
-                                                      },
-                                                          child: Text("Camera",
-                                                            style: TextStyle(color: Colors.grey),)),
-                                                    ],
-                                                  ), SizedBox(width: 25,),
-                                                  Column(
-                                                    children: [
-                                                      IconButton(
-                                                        onPressed: getdata,
-                                                        icon: Icon(Icons.image),
-                                                        color: Colors.green,),
-                                                      SizedBox(height: 10,),
-                                                      TextButton(onPressed: () {
-                                                        (img == null)
-                                                            ? Text("Gallary not supported")
-                                                            : Image.file(img!);
-                                                      },
-                                                          child: Text("Gallery",
-                                                            style: TextStyle(color: Colors.grey),)),
-                                                    ],
-                                                  ), SizedBox(width: 25,),
-                                                  Column(
-                                                    children: [
-                                                      IconButton(onPressed: () {
+                                              Center(
+                                                child: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                  children: [
+                                                    Column(
+                                                      children: [
+                                                        IconButton(onPressed: data,
+                                                          icon: Icon(Icons.camera_alt_outlined),
+                                                          color: Colors.green,),
+                                                        SizedBox(height: 10,),
+                                                        TextButton(onPressed: () {
+                                                          (img == null)
+                                                              ? Text("Camera not supported")
+                                                              : Image.file(img!);
+                                                        },
+                                                            child: Text("Camera",
+                                                              style: TextStyle(color: Colors.grey),)),
+                                                      ],
+                                                    ), SizedBox(width: 25,),
+                                                    Column(
+                                                      children: [
+                                                        IconButton(
+                                                          onPressed: getdata,
+                                                          icon: Icon(Icons.image),
+                                                          color: Colors.green,),
+                                                        SizedBox(height: 10,),
+                                                        TextButton(onPressed: () {
+                                                          (img == null)
+                                                              ? Text("Gallary not supported")
+                                                              : Image.file(img!);
+                                                        },
+                                                            child: Text("Gallery",
+                                                              style: TextStyle(color: Colors.grey),)),
+                                                      ],
+                                                    ), SizedBox(width: 25,),
+                                                    Column(
+                                                      children: [
+                                                        IconButton(onPressed: () {
 
-                                                      }, icon: Icon(Icons.face),
-                                                        color: Colors.green,
-                                                      ),
-                                                      SizedBox(height: 10,),
-                                                      Text("Avatar",
-                                                        style: TextStyle(color: Colors.grey),),
-                                                    ],
-                                                  )
-                                                ],
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      );
-                                    });
-                              },
-                              icon: Icon(Icons.camera_alt_outlined)
-                          ),
-                          backgroundColor: Colors.green,
-                        )
-                    )
-                  ],
+                                                        }, icon: Icon(Icons.face),
+                                                          color: Colors.green,
+                                                        ),
+                                                        SizedBox(height: 10,),
+                                                        Text("Avatar",
+                                                          style: TextStyle(color: Colors.grey),),
+                                                      ],
+                                                    )
+                                                  ],
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        );
+                                      });
+                                },
+                                icon: Icon(Icons.camera_alt_outlined)
+                            ),
+                            backgroundColor: Colors.green,
+                          )
+                      )
+                    ],
+                  ),
                 ),
               ),
               ListView.builder(

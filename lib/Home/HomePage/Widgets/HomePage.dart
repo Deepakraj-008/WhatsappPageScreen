@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
   import 'package:get/get.dart';
+import 'package:whatsappscreen/Home/Settings/Widgets/Linked%20devices.dart';
+import 'package:whatsappscreen/Home/Settings/Widgets/New%20Broadcast.dart';
+import 'package:whatsappscreen/Home/Settings/Widgets/Newgroups.dart';
+import 'package:whatsappscreen/Home/Settings/Widgets/Payment.dart';
+import 'package:whatsappscreen/Home/Settings/Widgets/StarredMessages.dart';
 
 import 'Chat.dart';
 import '../../Settings/Widgets/Settings.dart';
@@ -23,13 +28,17 @@ import '../../Settings/Widgets/Settings.dart';
       '+',
     ];
 
+
+
     @override
     Widget build(BuildContext context) {
       return SafeArea(
         child: Scaffold(
           backgroundColor: Color(0xFF0B1014),
-          appBar: AppBar(
+          appBar: AppBar
+            (
             backgroundColor: Color(0xFF0B1014),
+            automaticallyImplyLeading: false,
             title: Text(
               'WhatsApp',
               style: TextStyle(
@@ -47,9 +56,11 @@ import '../../Settings/Widgets/Settings.dart';
                 ),
               ),
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+
+                },
                 icon: Icon(
-                  Icons.camera_alt_rounded,
+                  Icons.camera_alt_outlined,
                   color: Colors.white,
                 ),
               ),
@@ -61,42 +72,48 @@ import '../../Settings/Widgets/Settings.dart';
                       position: position,
                       color: Color(0xFF252A2D),
                       items: [
-                    PopupMenuItem(
-                      child: TextButton(
-                        onPressed: () {},
-                        child: Text("New group", style: TextStyle(color: Colors.white)),
-                      ),
-                    ),
-                    PopupMenuItem(
-                      child: TextButton(
-                        onPressed: () {},
-                        child: Text("New broadcast", style: TextStyle(color: Colors.white)),
-                      ),
-                    ),
-                    PopupMenuItem(
-                      child: TextButton(
-                        onPressed: () {},
-                        child: Text("Linked devices", style: TextStyle(color: Colors.white)),
-                      ),
-                    ),
-                    PopupMenuItem(
-                      child: TextButton(
-                        onPressed: () {},
-                        child: Text("Starred messages", style: TextStyle(color: Colors.white)),
-                      ),
-                    ),
-                    PopupMenuItem(
-                      child: TextButton(
-                        onPressed: () {},
-                        child: Text("Payments", style: TextStyle(color: Colors.white)),
-                      ),
-                    ),
-                    PopupMenuItem(
-                      //onTap: ()=>,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 10.0),
-                        child: Text("Read all", style: TextStyle(color: Colors.white)),
-                      ),    ),
+                        PopupMenuItem(
+                          onTap: ()=> Get.to(Newgroupadd()),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 10.0),
+                            child: Text("New group", style: TextStyle(color: Colors.white)),
+                          ),
+                        ),
+                        PopupMenuItem(
+                          onTap: ()=> Get.to(NewBroadcasts()),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 10.0),
+                            child: Text("New broadcast", style: TextStyle(color: Colors.white)),
+                          ),
+                        ),
+                        PopupMenuItem(
+                          onTap: ()=> Get.to(Linkeddevicess()),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 10.0),
+                            child: Text("Linked devices", style: TextStyle(color: Colors.white)),
+                          ),
+                        ),
+                        PopupMenuItem(
+                          onTap: ()=> Get.to(StarredMessagess()),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 10.0),
+                            child: Text("Stared messages", style: TextStyle(color: Colors.white)),
+                          ),
+                        ),
+                        PopupMenuItem(
+                          onTap: ()=> Get.to(Payments()),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 10.0),
+                            child: Text("Payments", style: TextStyle(color: Colors.white)),
+                          ),
+                        ),
+                        PopupMenuItem(
+                          onTap: ()=> Get.to(HomeScreen()),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 10.0),
+                            child: Text("Read all", style: TextStyle(color: Colors.white)),
+                          ),
+                        ),
                     PopupMenuItem(
                       onTap: ()=> Get.to(Settings()),
                         child: Padding(
@@ -228,12 +245,51 @@ import '../../Settings/Widgets/Settings.dart';
                     Get.to( Chatpage());
                   },
                   leading:  CircleAvatar(
-                      child: Container(
-                        decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            image: DecorationImage(
-                              image: NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDCsqRYLAFDdL4Ix_AHai7kNVyoPV9Ssv1xg&s')
-                              ,fit: BoxFit.fill,)
+                      child: GestureDetector(
+                        onTap: () {
+                          showDialog(context: context, builder: (context)
+                          {
+                            return AlertDialog(
+                              title: Text("Deepak Raj"),backgroundColor: Colors.black,
+                              actions: [
+                                Column(
+                                  children: [
+                                    CircleAvatar(
+                                      radius: 100,
+                                      backgroundColor: Colors.blueGrey[200],
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          color: Colors.blueGrey[200],
+                                            shape: BoxShape.circle,
+                                            image: const DecorationImage(
+                                              image: NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDCsqRYLAFDdL4Ix_AHai7kNVyoPV9Ssv1xg&s')
+                                              ,fit: BoxFit.cover,)
+                                        ),
+                                      ),
+                                    ),
+                                    Row(
+                                      crossAxisAlignment: CrossAxisAlignment.start,mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        IconButton(onPressed: (){}, icon: Icon(Icons.message,color: Colors.greenAccent,)),
+                                        IconButton(onPressed: (){}, icon: Icon(Icons.call,color: Colors.greenAccent,)),
+                                        IconButton(onPressed: (){}, icon: Icon(Icons.videocam_outlined,color: Colors.greenAccent,)),
+                                        IconButton(onPressed: (){}, icon: Icon(Icons.info_outline_rounded,color: Colors.greenAccent,)),
+                                      ],
+                                    )
+
+                                  ],
+                                )
+                              ],
+                            );
+                          });
+                        },
+                        child: Container(
+                          decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              image: DecorationImage(
+                                image: NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDCsqRYLAFDdL4Ix_AHai7kNVyoPV9Ssv1xg&s')
+                                ,fit: BoxFit.cover,)
+                          ),
                         ),
                       )
                   ),
