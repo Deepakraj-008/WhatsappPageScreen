@@ -2,8 +2,18 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:whatsappscreen/Home/Settings/Screens/Accounts.dart';
 
 import '../../../Profile/Widgets/ProfilePage.dart';
+import '../Screens/App updates.dart';
+import '../Screens/Avatars.dart';
+import '../Screens/Chats.dart';
+import '../Screens/Help.dart';
+import '../Screens/Invite a friend.dart';
+import '../Screens/Lists.dart';
+import '../Screens/Notifications.dart';
+import '../Screens/Privacy.dart';
+import '../Screens/Storage and data.dart';
 
 class Settings extends StatefulWidget {
   const Settings({super.key});
@@ -13,10 +23,31 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
+  ThemeMode _themeMode = ThemeMode.light;
+
+  void _toggleTheme() {
+    setState(() {
+      _themeMode = _themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
+    });
+  }
+
   List<String> titles=['Account','Privacy','Avatar','Lists','Chats','Notifications','Storage and data','App language','Help',];
   List<String> sub=["Security notifications, change number",'Block Contacts, disappearing messages','Create, edit, profile photo',
     'Manage people and groups','Theme, wallpapers,chat history','Message,group & call tones',
     'Network usage, auto-download','English (device\'s language)',"Help center, contact us, privacy policy"];
+  List<Widget> screens = [
+    Accountss(),
+    Privacys(),
+    Avatars(),
+    Listss(),
+    Chatss(),
+    Notifications(),
+    StorageandData(),
+    Helps(),
+    InviteAfriend(),
+    Appupdatess(),
+  ];
+
 
   List<IconData> icon=[Icons.vpn_key_outlined, Icons.lock_outline,Icons.face,Icons.perm_contact_calendar_outlined,Icons.message,Icons.notifications_none_outlined,
     Icons.cloud_circle,Icons.language_outlined,Icons.help_outline_outlined,
@@ -111,7 +142,9 @@ class _SettingsState extends State<Settings> {
                     itemBuilder: (context,index){
                       return Container(
                         child: ListTile(
-                          onTap: (){},
+                          onTap: (){
+                            Get.to(screens[index]);
+                          },
                           leading: Icon(icon[index],color: Colors.grey),
                           title: Text(titles[index],style:TextStyle(color: Colors.white,)),
                           subtitle: Text(sub[index],style:TextStyle(color: Colors.grey,)),

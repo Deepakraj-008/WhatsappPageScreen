@@ -29,14 +29,27 @@ class _LinkeddevicessState extends State<Linkeddevicess> {
           ),
           body: Column(
             children: [
-              SizedBox(height: 170,),
+              SizedBox(height: 20,),
+              Padding(
+                padding: const EdgeInsets.all(18.0),
+                child: Container(
+                  height: 103,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage('assets/images/Linkeddevice.png'),colorFilter: ColorFilter.mode(Colors.black12, BlendMode.darken),fit: BoxFit.cover
+                    )
+                  ),
+                ),
+              ),
+              SizedBox(height: 10,),
               Text('Use WhatsApp \n on other devices ',
                 style: TextStyle(
                   color: Colors.white.withOpacity(0.5),
                     fontWeight: FontWeight.w500,
-                    fontSize: 25,
+                    fontSize: 23,
                 ),textAlign: TextAlign.center,
               ),
+              SizedBox(height: 5,),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8.0,horizontal: 25),
                 child: RichText(
@@ -67,6 +80,7 @@ class _LinkeddevicessState extends State<Linkeddevicess> {
                     )
                   ),
               ),
+              SizedBox(height: 5,),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 15.0,horizontal: 20),
                 child: Row(crossAxisAlignment: CrossAxisAlignment.start,
