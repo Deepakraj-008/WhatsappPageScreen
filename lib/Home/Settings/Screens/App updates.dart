@@ -13,22 +13,26 @@ class _AppupdatessState extends State<Appupdatess> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child: Scaffold(
+    return SafeArea(
+        child: Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: Color(0xFF0B1014),
-        toolbarHeight: 60,
-        actions: [
-          IconButton(onPressed: () {
-            Navigator.pop(context);
-          }, icon: Icon(Icons.arrow_back_sharp, color: Colors.white,))
-        ],
-        title: Text('App updates settings', style: TextStyle(fontWeight: FontWeight.w400,
-            fontSize: 25,
-            color: Colors.white),),
-        centerTitle: true,
-      ),
+          appBar: AppBar(
+            automaticallyImplyLeading: false,
+            backgroundColor:Colors.white ,
+            scrolledUnderElevation: 0,
+            toolbarHeight: 60,
+            actions: [
+              IconButton(onPressed: () {
+                Navigator.pop(context);
+              }, icon: Icon(Icons.arrow_back_sharp,color: Colors.black,size: 30,)),
+              SizedBox(width: 65,),
+              Text('App update settings', style: TextStyle(fontWeight: FontWeight.bold,
+                fontSize: 18,color:Colors.black,
+              ),),
+              Spacer(),
+            ],
+
+          ),
     )
     );
   }

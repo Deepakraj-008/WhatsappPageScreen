@@ -37,15 +37,16 @@ class _ChatpageState extends State<Chatpage> {
     final width =MediaQuery.of(context).size.width;
     return SafeArea(
         child: Scaffold(
-          backgroundColor: Colors.grey.withOpacity(0.3),
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: Color(0xFF0B1014),
+        scrolledUnderElevation: 0,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         toolbarHeight: 60,
         actions: [
          IconButton(onPressed: (){
             Navigator.pop(context);
-         }, icon: Icon(Icons.arrow_back_sharp,color: Colors.white,)),
+         }, icon: Icon(Icons.arrow_back_sharp,)),
           CircleAvatar(
             child: Container(
               decoration: BoxDecoration(
@@ -58,12 +59,11 @@ class _ChatpageState extends State<Chatpage> {
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
-              color: Colors.white.withOpacity(0.9),
             ),
            ),
           Spacer(),
-          IconButton(onPressed: (){}, icon: Icon(Icons.videocam_outlined,color: Colors.white,)),
-          IconButton(onPressed: (){}, icon: Icon(Icons.call,color: Colors.white,)),
+          IconButton(onPressed: (){}, icon: Icon(Icons.videocam_outlined,)),
+          IconButton(onPressed: (){}, icon: Icon(Icons.call,)),
           IconButton(onPressed: ()
           {
             //final RelativeRect position=RelativeRect.fromLTRB(10, 86, 0, 0);
@@ -71,64 +71,47 @@ class _ChatpageState extends State<Chatpage> {
               context: context,
              position: RelativeRect.fromLTRB(100, 80, 0, 0),
              // position: position,
-              color: Color(0xFF252A2D),
               items: [
                 PopupMenuItem(
-                  child: TextButton(
-                    onPressed: () {},
-                    child: Text("View contact", style: TextStyle(color: Colors.white)),
-                  ),
+                  onTap: (){},
+                  child: Text("View contact", style: TextStyle()),
                 ),
                 PopupMenuItem(
-                  child: TextButton(
-                    onPressed: () {},
-                    child: Text("Search", style: TextStyle(color: Colors.white)),
-                  ),
+                  onTap: (){},
+                  child: Text("Search", style: TextStyle()),
                 ),
                 PopupMenuItem(
-                  child: TextButton(
-                    onPressed: () {},
-                    child: Text("Add to list", style: TextStyle(color: Colors.white)),
-                  ),
+                  onTap: (){},
+                  child: Text("Add to list", style: TextStyle()),
                 ),
                 PopupMenuItem(
-                  child: TextButton(
-                    onPressed: () {},
-                    child: Text("Media,links, and docs", style: TextStyle(color: Colors.white)),
-                  ),
+                  onTap: (){},
+                  child: Text("Media,links, and docs", style: TextStyle()),
                 ),
                 PopupMenuItem(
-                  child: TextButton(
-                    onPressed: () {},
-                    child: Text("Unmute notifications", style: TextStyle(color: Colors.white)),
-                  ),
+                  onTap: (){},
+                  child: Text("Unmute notifications", style: TextStyle()),
                 ),
                 PopupMenuItem(
-                  child: TextButton(
-                    onPressed: () {},
-                    child: Text("Disappearing messages", style: TextStyle(color: Colors.white)),
-                  ),
+                  onTap: (){},
+                  child: Text("Disappearing messages", style: TextStyle()),
                 ),
                 PopupMenuItem(
-                  child: TextButton(
-                    onPressed: () {},
-                    child: Text("Chat theme", style: TextStyle(color: Colors.white)),
-                  ),
+                  onTap: (){},
+                  child: Text("Chat theme", style: TextStyle()),
                 ),
                 PopupMenuItem(
-                  child: TextButton(
-                    onPressed: () {},
-                    child: Row(
-                      children: [
-                        Text("more ", style: TextStyle(color: Colors.white)),SizedBox(width: 90,),
-                        Icon(Icons.arrow_right,color: Colors.white,)
-                      ],
-                    ),
+                  onTap: (){},
+                  child: Row(
+                    children: [
+                      Text("more ", style: TextStyle()),SizedBox(width: 90,),
+                      Icon(Icons.arrow_right,)
+                    ],
                   ),
                 ),
               ],
             );
-          }, icon: Icon(Icons.more_vert,color: Colors.white,)),
+          }, icon: Icon(Icons.more_vert,)),
         ],
 
       ),
@@ -164,42 +147,42 @@ class _ChatpageState extends State<Chatpage> {
                               const SizedBox(height: 10,),
                               const Reciever(message: 'hii', time: '15:12PM'),
                               const SizedBox(height: 15,),
-                               Center(child: Container(child: Center(child: Text('April 3,2025',style: TextStyle(color:Colors.white.withOpacity(0.5)))),width: 85,height: 25,decoration: BoxDecoration(color: Colors.black.withOpacity(0.3),borderRadius: BorderRadius.circular(30)),)),
+                               Center(child: Container(child: Center(child: Text('April 3,2025',style: TextStyle())),width: 85,height: 25,decoration: BoxDecoration(borderRadius: BorderRadius.circular(30)),)),
                               const SizedBox(height: 5,),
                               const Sender(message: 'This is deepak', time: '15:12PM'),
                               const SizedBox(height: 10,),
                               const Reciever(message: 'hii deepak tell me', time: '15:12PM'),
                               const SizedBox(height: 15,),
-                               Center(child: Container(child: Center(child: Text('Friday',style: TextStyle(color:Colors.white.withOpacity(0.5)),)),width: 55,height: 25,decoration: BoxDecoration(color: Colors.black.withOpacity(0.3),borderRadius: BorderRadius.circular(30)),)),
+                               Center(child: Container(child: Center(child: Text('Friday',style: TextStyle(),)),width: 55,height: 25,decoration: BoxDecoration(borderRadius: BorderRadius.circular(30)),)),
                               const SizedBox(height: 5,),
                               const Sender(message: 'How r u sir', time: '15:12PM'),
                               const SizedBox(height: 10,),
                               const Reciever(message: 'Good deepak what about u ', time: '15:12PM'),
                               const SizedBox(height: 15,),
-                               Center(child: Container(child: Center(child: Text('Monday', style: TextStyle(color:Colors.white.withOpacity(0.5)),)),width: 65,height: 25,decoration: BoxDecoration(color: Colors.black.withOpacity(0.3),borderRadius: BorderRadius.circular(30)),)),
+                               Center(child: Container(child: Center(child: Text('Monday', style: TextStyle(),)),width: 65,height: 25,decoration: BoxDecoration(borderRadius: BorderRadius.circular(30)),)),
                               const SizedBox(height: 5,),
                               const Sender(message: 'fine sir', time: '15:12PM'),
                               const SizedBox(height: 10,),
                               const Reciever(message: 'have u completed today\'s task', time: '15:12PM'),
                               const SizedBox(height: 15,),
-                               Center(child: Container(child: Center(child: Text('Tuesday',style: TextStyle(color:Colors.white.withOpacity(0.5)),)),width: 65,height: 25,decoration: BoxDecoration(color: Colors.black.withOpacity(0.3),borderRadius: BorderRadius.circular(30)),)),
+                               Center(child: Container(child: Center(child: Text('Tuesday',style: TextStyle(),)),width: 65,height: 25,decoration: BoxDecoration(borderRadius: BorderRadius.circular(30)),)),
                               const SizedBox(height: 5,),
                               const Sender(message: 'yes sir', time: '15:12PM'),
                               const SizedBox(height: 10,),
                               const Reciever(message: 'Good', time: '15:12PM'),
-                             Center(child: Container(child: Center(child: Text('Wednesday',style: TextStyle(color:Colors.white.withOpacity(0.5)),)),width: 80,height: 25,decoration: BoxDecoration(color: Colors.black.withOpacity(0.3),borderRadius: BorderRadius.circular(30)),)),
+                             Center(child: Container(child: Center(child: Text('Wednesday',style: TextStyle(),)),width: 80,height: 25,decoration: BoxDecoration(borderRadius: BorderRadius.circular(30)),)),
                               const SizedBox(height: 5,),
                               const Sender(message: 'ok sir', time: '15:12PM'),
                               const SizedBox(height: 10,),
                               const Reciever(message: 'ok ', time: '15:12PM'),
                               const SizedBox(height: 15,),
-                               Center(child: Container(child: Center(child: Text('Yesterday',style: TextStyle(color:Colors.white.withOpacity(0.5)),)),width: 75,height: 25,decoration: BoxDecoration(color: Colors.black.withOpacity(0.3),borderRadius: BorderRadius.circular(30)),)),
+                               Center(child: Container(child: Center(child: Text('Yesterday',style: TextStyle(),)),width: 75,height: 25,decoration: BoxDecoration(borderRadius: BorderRadius.circular(30)),)),
                               const SizedBox(height: 5,),
                               const Sender(message: 'Sir, should i get the task on the tomorrow morning', time: '15:12PM'),
                               const SizedBox(height: 10,),
                               const Reciever(message: 'yes i will give the task tomorrow meet me in the office', time: '15:12PM'),
                               const SizedBox(height: 15,),
-                              Center(child: Container(child: Center(child: Text('Today',style: TextStyle(color: Colors.white.withOpacity(0.5)),)),width: 55,height: 25,decoration: BoxDecoration(color: Colors.black.withOpacity(0.3),borderRadius: BorderRadius.circular(30)),)),
+                              Center(child: Container(child: Center(child: Text('Today',style: TextStyle())),width: 55,height: 25,decoration: BoxDecoration(borderRadius: BorderRadius.circular(30)),)),
                               const SizedBox(height: 5,),
                               const Sender(message: 'sure sit thank u 😊', time: '15:12PM'),
                               const SizedBox(height: 5,),
@@ -227,7 +210,7 @@ class _ChatpageState extends State<Chatpage> {
                          height: 50,
                          width: 330,
                          decoration: BoxDecoration(
-                           color: Color(0xFF1F272A),
+                           color: Theme.of(context).scaffoldBackgroundColor,
                            borderRadius: BorderRadius.all(
                               Radius.circular(30),
                            ),
@@ -235,7 +218,7 @@ class _ChatpageState extends State<Chatpage> {
                          child: Row(
                            children: [
                              IconButton(onPressed: (){},
-                                 icon: Icon(Icons.emoji_emotions_outlined, color: Color(0xFF757D80),)
+                                 icon: Icon(Icons.emoji_emotions_outlined,)
                              ),
                               Expanded(
                                 child: TextField(
@@ -247,7 +230,7 @@ class _ChatpageState extends State<Chatpage> {
                                     hintText: 'Type a message',
                                     border: InputBorder.none,
                                     hintStyle: TextStyle(
-                                      color: Color(0xFF757D80),
+                                      color: Theme.of(context).scaffoldBackgroundColor
                                     ),
                                   ),
                                 ),
@@ -255,13 +238,13 @@ class _ChatpageState extends State<Chatpage> {
                               indexx ?
                               IconButton(
                                 onPressed: () {},
-                                icon: Icon(Icons.attach_file,color: Color(0xFF757D80)),
+                                icon: Icon(Icons.attach_file,),
                               ) :
                               Row(
                                 children: [
-                                  IconButton(onPressed: (){}, icon: Icon(Icons.attach_file,color: Color(0xFF757D80),)),
-                                  IconButton(onPressed: (){}, icon: Icon(Icons.currency_rupee,color: Color(0xFF757D80))),
-                                  IconButton(onPressed: (){}, icon: Icon(Icons.camera_alt,color: Color(0xFF757D80))),
+                                  IconButton(onPressed: (){}, icon: Icon(Icons.attach_file,)),
+                                  IconButton(onPressed: (){}, icon: Icon(Icons.currency_rupee,)),
+                                  IconButton(onPressed: (){}, icon: Icon(Icons.camera_alt_outlined,)),
                                 ],
                               )
 
@@ -278,8 +261,7 @@ class _ChatpageState extends State<Chatpage> {
                             FocusScope.of(context).unfocus();
                             _controller.clear();
                           },
-                          icon : Icon(Icons.send) ,
-                          color: Colors.black.withOpacity(0.9),
+                          icon : Icon(Icons.send,color: Theme.of(context).scaffoldBackgroundColor,) ,
                         ),
                      ) :
                      CircleAvatar(
@@ -290,8 +272,7 @@ class _ChatpageState extends State<Chatpage> {
                          {
 
                          },
-                         icon : Icon(Icons.mic) ,
-                         color: Colors.black.withOpacity(0.9),
+                         icon : Icon(Icons.mic,color: Theme.of(context).scaffoldBackgroundColor,) ,
                        ),
                      )
                    ],

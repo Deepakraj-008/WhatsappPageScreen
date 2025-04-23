@@ -13,28 +13,28 @@ class _StarredMessagessState extends State<StarredMessagess> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-          backgroundColor: Color(0xFF0B1014),
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           appBar: AppBar(
             automaticallyImplyLeading: false,
-            backgroundColor: Color(0xFF0B1014),
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+            scrolledUnderElevation: 0,
             toolbarHeight: 60,
             actions: [
               IconButton(onPressed: () {
                 Navigator.pop(context);
-              }, icon: Icon(Icons.arrow_back_sharp, color: Colors.white,)
+              }, icon: Icon(Icons.arrow_back_sharp, )
               ), SizedBox(width: 5,),
               Text('Starred messages', style: TextStyle(
-                  fontSize: 21,
-                  color: Colors.white),),
+                  fontSize: 21,),),
               Spacer(),
               IconButton(onPressed: () {
 
-              }, icon: Icon(Icons.search, color: Colors.white,)
+              }, icon: Icon(Icons.search, )
               ),
 
               IconButton(onPressed: () {
 
-              }, icon: Icon(Icons.more_vert, color: Colors.white,)
+              }, icon: Icon(Icons.more_vert, )
               ),
               SizedBox(width: 2,)
             ],

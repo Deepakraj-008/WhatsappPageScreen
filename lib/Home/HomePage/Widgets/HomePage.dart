@@ -6,12 +6,18 @@ import 'package:whatsappscreen/Home/Settings/Widgets/Newgroups.dart';
 import 'package:whatsappscreen/Home/Settings/Widgets/Payment.dart';
 import 'package:whatsappscreen/Home/Settings/Widgets/StarredMessages.dart';
 
+import '../../../main.dart';
 import 'Chat.dart';
 import '../../Settings/Widgets/Settings.dart';
 
   class HomeScreen extends StatefulWidget {
-    const HomeScreen({super.key});
-
+    final ThemeMode? currentMode;
+    final ValueChanged<ThemeMode>? onThemeChanged;
+    const HomeScreen({
+      super.key,
+       this.currentMode,
+       this.onThemeChanged,
+    });
     @override
     State<HomeScreen> createState() => _HomeScreenState();
   }
@@ -28,31 +34,40 @@ import '../../Settings/Widgets/Settings.dart';
       '+',
     ];
 
+    ThemeMode _themeMode = ThemeMode.system;
 
+    void _updateTheme(ThemeMode mode) {
+      setState(() => _themeMode = mode);
+    }
+
+    late ThemeMode tempMode;
+    final themeController = Get.find<ThemeController>();
+
+    @override
+    void initState() {
+      super.initState();
+      tempMode = themeController.themeMode.value;
+    }
 
     @override
     Widget build(BuildContext context) {
       return SafeArea(
         child: Scaffold(
-          backgroundColor: Color(0xFF0B1014),
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           appBar: AppBar
             (
-            backgroundColor: Color(0xFF0B1014),
+            scrolledUnderElevation: 0,
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             automaticallyImplyLeading: false,
             title: Text(
               'WhatsApp',
-              style: TextStyle(
-                color: Colors.white.withOpacity(0.9),
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-              ),
+              style: Theme.of(context).textTheme.headlineMedium
             ),
             actions: [
               IconButton(
                 onPressed: () {},
                 icon: Icon(
                   Icons.qr_code_scanner,
-                  color: Colors.white,
                 ),
               ),
               IconButton(
@@ -61,7 +76,6 @@ import '../../Settings/Widgets/Settings.dart';
                 },
                 icon: Icon(
                   Icons.camera_alt_outlined,
-                  color: Colors.white,
                 ),
               ),
               IconButton(
@@ -70,55 +84,56 @@ import '../../Settings/Widgets/Settings.dart';
                   showMenu(
                       context: context,
                       position: position,
-                      color: Color(0xFF252A2D),
                       items: [
                         PopupMenuItem(
                           onTap: ()=> Get.to(Newgroupadd()),
                           child: Padding(
                             padding: const EdgeInsets.only(left: 10.0),
-                            child: Text("New group", style: TextStyle(color: Colors.white)),
+                            child: Text("New group", ),
                           ),
                         ),
                         PopupMenuItem(
                           onTap: ()=> Get.to(NewBroadcasts()),
                           child: Padding(
                             padding: const EdgeInsets.only(left: 10.0),
-                            child: Text("New broadcast", style: TextStyle(color: Colors.white)),
+                            child: Text("New broadcast", ),
                           ),
                         ),
                         PopupMenuItem(
                           onTap: ()=> Get.to(Linkeddevicess()),
                           child: Padding(
                             padding: const EdgeInsets.only(left: 10.0),
-                            child: Text("Linked devices", style: TextStyle(color: Colors.white)),
+                            child: Text("Linked devices",),
                           ),
                         ),
                         PopupMenuItem(
                           onTap: ()=> Get.to(StarredMessagess()),
                           child: Padding(
                             padding: const EdgeInsets.only(left: 10.0),
-                            child: Text("Stared messages", style: TextStyle(color: Colors.white)),
+                            child: Text("Stared messages",),
                           ),
                         ),
                         PopupMenuItem(
                           onTap: ()=> Get.to(Payments()),
                           child: Padding(
                             padding: const EdgeInsets.only(left: 10.0),
-                            child: Text("Payments", style: TextStyle(color: Colors.white)),
+                            child: Text("Payments",),
                           ),
                         ),
                         PopupMenuItem(
-                          onTap: ()=> Get.to(HomeScreen()),
+                          onTap: ()=> Get.to(HomeScreen(onThemeChanged: _updateTheme,
+                            currentMode: _themeMode,)),
                           child: Padding(
                             padding: const EdgeInsets.only(left: 10.0),
-                            child: Text("Read all", style: TextStyle(color: Colors.white)),
+                            child: Text("Read all",),
                           ),
                         ),
                     PopupMenuItem(
-                      onTap: ()=> Get.to(Settings()),
+                      onTap: ()=> Get.to(Settings(
+                      )),
                         child: Padding(
                           padding: const EdgeInsets.only(left: 10.0),
-                          child: Text("Settings", style: TextStyle(color: Colors.white)),
+                          child: Text("Settings",),
                         ),
                       ),
 
@@ -127,7 +142,6 @@ import '../../Settings/Widgets/Settings.dart';
                   },
                 icon: Icon(
                   Icons.more_vert,
-                  color: Colors.white,
                 ),
               ),
             ],
@@ -141,28 +155,23 @@ import '../../Settings/Widgets/Settings.dart';
                   child: Container(
                     height: 50,
                     decoration: BoxDecoration(
-                      color: const Color(0xFF23282C),
                       borderRadius: BorderRadius.circular(30),
-                      border: Border.all(color: Color(0xFF0B1014))
+                      border: Border.all()
                     ),
                     child: TextField(
+                      style: TextStyle(color: Theme.of(context).scaffoldBackgroundColor),
                       controller: _textController,
-                      cursorColor: const Color(0xFF666E71),
                       keyboardAppearance: Brightness.dark,
-                      style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
                         border: OutlineInputBorder(borderSide: BorderSide.none,
                           borderRadius: BorderRadius.circular(30),
                         ),
-                        hintText: 'Search...',
+                        hintText: 'Ask Meta AI or Search',
                         prefixIcon: const Icon(
                           Icons.search,
-                          color: Color(0xFF666E71),
                         ),
                         hintStyle: TextStyle(
-                          color: Color(0xFF666E71),
                           fontSize: 16,
-                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
@@ -183,7 +192,6 @@ import '../../Settings/Widgets/Settings.dart';
                             height: 40,
                             width: 70,
                             decoration: BoxDecoration(
-                              color: Color(0xFF23282D),
                               borderRadius: BorderRadius.circular(30),
                             ),
                             child: TextButton(
@@ -195,8 +203,8 @@ import '../../Settings/Widgets/Settings.dart';
                               child: Text(
                                 types[index],
                                 style: TextStyle(
-                                  color: Color(0xFF666E71),
                                   fontSize: 13,
+                                  color: Colors.grey.shade600,fontWeight: FontWeight.w400
                                 ),
                               ),
                             ),
@@ -216,22 +224,22 @@ import '../../Settings/Widgets/Settings.dart';
                         SizedBox(width: 10),
                         Icon(
                           Icons.add_card_sharp,
-                          color: Color(0xFF666E71),
+                            color: Colors.grey.shade600,
                         ),
                         SizedBox(width: 30),
                         Text(
                           'Archived',
                           style: TextStyle(
-                            color: Color(0xFF666E71),
                             fontSize: 15,
+                              color: Colors.grey.shade600,fontWeight: FontWeight.w400
                           ),
                         ),
                         Spacer(),
                         Text(
                           '41',
                           style: TextStyle(
-                            color: Color(0xFF666E71),
                             fontSize: 15,
+                              color: Colors.grey.shade600,fontWeight: FontWeight.w400
                           ),
                         ),
                       ],
@@ -256,10 +264,8 @@ import '../../Settings/Widgets/Settings.dart';
                                   children: [
                                     CircleAvatar(
                                       radius: 100,
-                                      backgroundColor: Colors.blueGrey[200],
                                       child: Container(
                                         decoration: BoxDecoration(
-                                          color: Colors.blueGrey[200],
                                             shape: BoxShape.circle,
                                             image: const DecorationImage(
                                               image: NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDCsqRYLAFDdL4Ix_AHai7kNVyoPV9Ssv1xg&s')
@@ -296,7 +302,6 @@ import '../../Settings/Widgets/Settings.dart';
                   title: Text(
                     'Username',
                     style: TextStyle(
-                      color: Colors.white.withOpacity(0.9),
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
@@ -304,7 +309,6 @@ import '../../Settings/Widgets/Settings.dart';
                   subtitle: Text(
                     'chat Now ',
                     style: TextStyle(
-                      color: Color(0xFF666E71),
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
                     ),
@@ -312,7 +316,6 @@ import '../../Settings/Widgets/Settings.dart';
                   trailing: Text(
                     'Yesterdays',
                     style: TextStyle(
-                      color: Color(0xFF666E71),
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
                     ),
@@ -332,10 +335,7 @@ import '../../Settings/Widgets/Settings.dart';
             showUnselectedLabels: true,
             showSelectedLabels: true,
             type: BottomNavigationBarType.fixed,
-            unselectedItemColor: Colors.white,
-            backgroundColor: Color(0xFF0B1014),
             selectedLabelStyle: TextStyle(
-              color: Colors.white.withOpacity(0.9),
               fontSize: 15,
               fontWeight: FontWeight.bold,
             ),
@@ -368,7 +368,7 @@ import '../../Settings/Widgets/Settings.dart';
           floatingActionButton: FloatingActionButton(
             onPressed: () {},
             backgroundColor: Colors.green.shade500,
-            child: Stack(children: [Icon(Icons.messenger,size: 25,),Positioned(bottom: 8,right: 5,child: Icon(Icons.add,size: 15,color: Colors.green,))]),
+            child: Stack(children: [Icon(Icons.messenger,size: 25,color: Theme.of(context).scaffoldBackgroundColor,),Positioned(bottom: 8,right: 5,child: Icon(Icons.add,size: 15,color: Colors.green,))]),
 
           ),
         ),

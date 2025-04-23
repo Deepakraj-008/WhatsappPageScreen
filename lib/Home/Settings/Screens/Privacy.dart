@@ -14,19 +14,19 @@ class _PrivacysState extends State<Privacys> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(child: Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
+        scrolledUnderElevation: 0,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         automaticallyImplyLeading: false,
-        backgroundColor: Color(0xFF0B1014),
         toolbarHeight: 60,
         actions: [
           IconButton(onPressed: () {
             Navigator.pop(context);
-          }, icon: Icon(Icons.arrow_back_sharp, color: Colors.white,)),
+          }, icon: Icon(Icons.arrow_back_sharp,)),
           SizedBox(width: 10,),
           Text('Privacy', style: TextStyle(fontWeight: FontWeight.w400,
-              fontSize: 25,
-              color: Colors.white),),
+              fontSize: 25,),),
           Spacer()
         ],
 

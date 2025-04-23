@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:whatsappscreen/Home/Settings/Screens/subscreens/Change_Number.dart';
+import 'package:whatsappscreen/Home/Settings/Screens/subscreens/Profile_About.dart';
+import 'package:whatsappscreen/Home/Settings/Screens/subscreens/Profile_Links.dart';
 
 import 'ProfilePic.dart';
 
@@ -68,29 +71,28 @@ class _ProfilepagesState extends State<Profilepages> {
       Icons.person_outline_rounded,
       Icons.info_outline_rounded,
       Icons.call,
-      Icons.link
     ];
-    List<String> titles = ['Name', 'About', 'Phone', 'Links',];
+    List<String> titles = ['Name', 'About', 'Phone',];
     List<String> sub = [
       "Deepak Raj",
       'LUCKY ~❤️',
       '+91 7095566055',
-      'Add links'
     ];
     return SafeArea(
-        child: Scaffold(backgroundColor: Color(0xFF0B1014),
+        child: Scaffold(
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           appBar: AppBar(
             automaticallyImplyLeading: false,
-            backgroundColor: Color(0xFF0B1014),
+            scrolledUnderElevation: 0,
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             toolbarHeight: 60,
             actions: [
               IconButton(onPressed: () {
                 Navigator.pop(context);
-              }, icon: Icon(Icons.arrow_back_sharp, color: Colors.white,)
+              }, icon: Icon(Icons.arrow_back_sharp,)
               ), SizedBox(width: 5,),
               Text('Profile', style: TextStyle(fontWeight: FontWeight.w400,
-                  fontSize: 25,
-                  color: Colors.white),), Spacer(),
+                  fontSize: 25,),), Spacer(),
             ],
           ),
           body: Column(
@@ -126,7 +128,7 @@ class _ProfilepagesState extends State<Profilepages> {
                                 onPressed: () {
                                   showModalBottomSheet(
                                       context: context,
-                                      backgroundColor: Color(0xFF0B1014),
+                                      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                                       builder: (context) {
                                         return Container(
                                           height: 200,
@@ -142,17 +144,14 @@ class _ProfilepagesState extends State<Profilepages> {
                                                     IconButton(onPressed: () {
                                                       Navigator.pop(context);
                                                     },
-                                                      icon: Icon(Icons.close,
-                                                        color: Colors.grey,),),
+                                                      icon: Icon(Icons.close,),),
                                                     Spacer(),
                                                     Text('Profile Photo',
-                                                      style: TextStyle(
-                                                          color: Colors.white),),
+                                                      style: TextStyle(),),
                                                     Spacer(),
                                                     IconButton(onPressed: () {},
                                                       icon: Icon(
-                                                        Icons.delete_outline,
-                                                        color: Colors.grey,),),
+                                                        Icons.delete_outline,),),
                                                   ],
                                                 ),
                                               ),
@@ -172,7 +171,7 @@ class _ProfilepagesState extends State<Profilepages> {
                                                               : Image.file(img!);
                                                         },
                                                             child: Text("Camera",
-                                                              style: TextStyle(color: Colors.grey),)),
+                                                              style: TextStyle(),)),
                                                       ],
                                                     ), SizedBox(width: 25,),
                                                     Column(
@@ -188,7 +187,7 @@ class _ProfilepagesState extends State<Profilepages> {
                                                               : Image.file(img!);
                                                         },
                                                             child: Text("Gallery",
-                                                              style: TextStyle(color: Colors.grey),)),
+                                                              style: TextStyle(),)),
                                                       ],
                                                     ), SizedBox(width: 25,),
                                                     Column(
@@ -200,7 +199,7 @@ class _ProfilepagesState extends State<Profilepages> {
                                                         ),
                                                         SizedBox(height: 10,),
                                                         Text("Avatar",
-                                                          style: TextStyle(color: Colors.grey),),
+                                                          style: TextStyle(),),
                                                       ],
                                                     )
                                                   ],
@@ -220,85 +219,117 @@ class _ProfilepagesState extends State<Profilepages> {
                   ),
                 ),
               ),
-              ListView.builder(
-                  itemCount: titles.length,
-                  physics: ScrollPhysics(),
-                  scrollDirection: Axis.vertical,
-                  shrinkWrap: true,
-                  itemBuilder: (context, index) {
-                    return Container(
-                      child: ListTile(
-                        onTap: () {
-                          showModalBottomSheet(
-                            backgroundColor: Color(0xFF0B1014),
-                              context: context,
-                              builder: (context) {
-                                return Container(
-                                 height: 450,
-                                  child: Column(mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      const Padding(
-                                        padding: EdgeInsets.only(left: 20.0,top: 20),
-                                        child: Text("Enter Your name ",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
-                                      ), SizedBox(height: 20,),
-                                      Row(
-                                        children: [
-                                          SizedBox(width: 20,),
-                                          Container(
-                                            width:280,
-                                            child: TextField(
-                                              style: TextStyle(color: Colors.white.withOpacity(0.3)),
-                                              autocorrect: true,
-                                              onChanged: (value) {
-                                                setState(() {
-                                                  count();
-                                                });
-                                              },
-                                              controller: _controller,
-                                              decoration: InputDecoration(
-                                                enabledBorder: OutlineInputBorder(
-                                                  borderSide: BorderSide(color: Colors.greenAccent, width: 2, style: BorderStyle.solid),
-                                                  borderRadius: BorderRadius.circular(10),
-                                                ),
-                                                focusedBorder: OutlineInputBorder(
-                                                  borderSide: BorderSide(color: Colors.greenAccent, width: 2, style: BorderStyle.solid),
-                                                  borderRadius: BorderRadius.circular(10),
-                                                ),
-                                              ),
-                                            ),
-                                          ),SizedBox(width: 10,),
-                                          Text("${cnt}",style:  TextStyle(color: Colors.white.withOpacity(0.3)),),SizedBox(width: 10,),
-                                          IconButton(onPressed: (){
-                                            emoji.clear();
-                                          }, icon: Icon(Icons.emoji_emotions_outlined,color: Colors.white.withOpacity(0.3),))
-                                        ],
-                                      ),
-                                      Row(crossAxisAlignment: CrossAxisAlignment.end,mainAxisAlignment: MainAxisAlignment.end,
-                                        children: [
-                                          TextButton(onPressed: (){
-                                            _controller.clear();
-                                        }, child: Text("Cancel",style: TextStyle(color: Colors.greenAccent),)),SizedBox(width: 25,),
-                                          TextButton(
-                                              onPressed: (){
-                                            _controller.clear();
-                                          }, child: Text("Save",style: TextStyle(color: Colors.greenAccent),)),SizedBox(width: 10,),
-                                        ]
-                                      )
-                                    ],
-                                  ),
-                                );
-                              }
-                          );
-                        },
-                        leading: Icon(icon[index], color: Colors.grey),
-                        title: Text(titles[index],
-                            style: TextStyle(color: Colors.white,)),
-                        subtitle: Text(
-                            sub[index], style: TextStyle(color: Colors.grey,)),
-                      ),
-                    );
-                  }),
+              // ListView.builder(
+              //     itemCount: titles.length,
+              //     physics: ScrollPhysics(),
+              //     scrollDirection: Axis.vertical,
+              //     shrinkWrap: true,
+              //     itemBuilder: (context, index) {
+              //       return Container(
+              //         child: ListTile(
+              //           onTap: () {
+              //             showModalBottomSheet(
+              //               backgroundColor: Color(0xFF0B1014),
+              //                 context: context,
+              //                 builder: (context) {
+              //                   return Container(
+              //                    height: 450,
+              //                     child: Column(mainAxisAlignment: MainAxisAlignment.start,
+              //                       crossAxisAlignment: CrossAxisAlignment.start,
+              //                       children: [
+              //                         const Padding(
+              //                           padding: EdgeInsets.only(left: 20.0,top: 20),
+              //                           child: Text("Enter Your name ",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+              //                         ), SizedBox(height: 20,),
+              //                         Row(
+              //                           children: [
+              //                             SizedBox(width: 20,),
+              //                             Container(
+              //                               width:280,
+              //                               child: TextField(
+              //                                 style: TextStyle(color: Colors.white.withOpacity(0.3)),
+              //                                 autocorrect: true,
+              //                                 onChanged: (value) {
+              //                                   setState(() {
+              //                                     count();
+              //                                   });
+              //                                 },
+              //                                 controller: _controller,
+              //                                 decoration: InputDecoration(
+              //                                   enabledBorder: OutlineInputBorder(
+              //                                     borderSide: BorderSide(color: Colors.greenAccent, width: 2, style: BorderStyle.solid),
+              //                                     borderRadius: BorderRadius.circular(10),
+              //                                   ),
+              //                                   focusedBorder: OutlineInputBorder(
+              //                                     borderSide: BorderSide(color: Colors.greenAccent, width: 2, style: BorderStyle.solid),
+              //                                     borderRadius: BorderRadius.circular(10),
+              //                                   ),
+              //                                 ),
+              //                               ),
+              //                             ),SizedBox(width: 10,),
+              //                             Text("${cnt}",style:  TextStyle(color: Colors.white.withOpacity(0.3)),),SizedBox(width: 10,),
+              //                             IconButton(onPressed: (){
+              //                               emoji.clear();
+              //                             }, icon: Icon(Icons.emoji_emotions_outlined,color: Colors.white.withOpacity(0.3),))
+              //                           ],
+              //                         ),
+              //                         Row(crossAxisAlignment: CrossAxisAlignment.end,mainAxisAlignment: MainAxisAlignment.end,
+              //                           children: [
+              //                             TextButton(onPressed: (){
+              //                               _controller.clear();
+              //                           }, child: Text("Cancel",style: TextStyle(color: Colors.greenAccent),)),SizedBox(width: 25,),
+              //                             TextButton(
+              //                                 onPressed: (){
+              //                               _controller.clear();
+              //                             }, child: Text("Save",style: TextStyle(color: Colors.greenAccent),)),SizedBox(width: 10,),
+              //                           ]
+              //                         )
+              //                       ],
+              //                     ),
+              //                   );
+              //                 }
+              //             );
+              //           },
+              //           leading: Icon(icon[index], ),
+              //           title: Text(titles[index],
+              //               style: TextStyle()),
+              //           subtitle: Text(
+              //               sub[index], style: TextStyle()),
+              //         ),
+              //       );
+              //     }),
+              AllListTile(
+                onTap: (){
+                  Get.to(Linkss());
+                },
+                leading: Icons.person_outline,
+                title: "Name",
+                subtitle: "Deepak Raj",
+              ),
+              AllListTile(
+                onTap: (){
+                  Get.to(Aboutss());
+                },
+                leading: Icons.info_outline,
+                title: "About",
+                subtitle: "Lucky~❤️",
+              ),
+              AllListTile(
+                onTap: (){
+                  Get.to(Change_Numbers());
+                },
+                leading: Icons.phone_outlined,
+                title: "Phone",
+                subtitle: "+91 7095566055",
+              ),
+              AllListTile(
+                onTap: (){
+                  Get.to(Linkss());
+                },
+                leading: Icons.link,
+                  title: "Links",
+                  subtitle: "Add Links",
+              )
 
 
             ],
@@ -306,4 +337,99 @@ class _ProfilepagesState extends State<Profilepages> {
         )
     );
   }
+
 }
+
+
+class AllListTile extends StatefulWidget {
+  final IconData? leading;
+  final String? title;
+  final String? subtitle;
+  final GestureTapCallback? onTap;
+  final  dynamic trailing;
+  final  dynamic? isThreeLine;
+  final  dynamic? dense;
+  final  dynamic? visualDensity;
+  final  dynamic? shape;
+  final  dynamic? style;
+  final  dynamic? selectedColor;
+  final  dynamic? iconColor;
+  final  dynamic? textColor;
+  final  dynamic? titleTextStyle;
+  final  dynamic? subtitleTextStyle;
+  final  dynamic? leadingAndTrailingTextStyle;
+  final  dynamic? contentPadding;
+  final  dynamic? enabled;
+  final  dynamic? onLongPress;
+  final  dynamic? onFocusChange;
+  final  dynamic? mouseCursor;
+  final  dynamic? selected;
+  final  dynamic? focusColor;
+  final  dynamic? hoverColor;
+  final  dynamic? splashColor;
+  final  dynamic? focusNode;
+  final  dynamic? autofocus;
+  final  dynamic? tileColor;
+  final  dynamic? selectedTileColor;
+  final  dynamic? enableFeedback;
+  final  dynamic? horizontalTitleGap;
+  final  dynamic? minVerticalPadding;
+  final  dynamic? minLeadingWidth;
+  final  dynamic? minTileHeight;
+  final  dynamic? titleAlignment;
+
+  const AllListTile({super.key,
+    this.leading,
+    this.title,
+    this.subtitle,
+    this.trailing,
+    this.isThreeLine = false,
+    this.dense,
+    this.visualDensity,
+    this.shape,
+    this.style,
+    this.selectedColor,
+    this.iconColor,
+    this.textColor,
+    this.titleTextStyle,
+    this.subtitleTextStyle,
+    this.leadingAndTrailingTextStyle,
+    this.contentPadding,
+    this.enabled = true,
+    this.onTap,
+    this.onLongPress,
+    this.onFocusChange,
+    this.mouseCursor,
+    this.selected = false,
+    this.focusColor,
+    this.hoverColor,
+    this.splashColor,
+    this.focusNode,
+    this.autofocus = false,
+    this.tileColor,
+    this.selectedTileColor,
+    this.enableFeedback,
+    this.horizontalTitleGap,
+    this.minVerticalPadding,
+    this.minLeadingWidth,
+    this.minTileHeight,
+    this.titleAlignment,});
+
+  @override
+  State<AllListTile> createState() => _AllListTileState();
+}
+
+class _AllListTileState extends State<AllListTile> {
+  @override
+  Widget build(BuildContext context) {
+    return
+        ListTile(
+          leading: Icon(widget.leading),
+          title: Text(widget.title!),
+          subtitle: Text(widget.subtitle!),
+          trailing: Icon(widget.trailing),
+          onTap: () => widget.onTap?.call(),
+        );
+  }
+}
+

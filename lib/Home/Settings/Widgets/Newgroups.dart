@@ -1,5 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+
+import '../../../main.dart';
 
 class Newgroupadd extends StatefulWidget {
   const Newgroupadd({super.key});
@@ -22,6 +26,22 @@ class _NewgroupaddState extends State<Newgroupadd> {
       hj = _index.isNotEmpty;
     });
     print("Selected indices: $_index");
+  }
+
+
+  ThemeMode _themeMode = ThemeMode.system;
+
+  void _updateTheme(ThemeMode mode) {
+    setState(() => _themeMode = mode);
+  }
+
+  late ThemeMode tempMode;
+  final themeController = Get.find<ThemeController>();
+
+  @override
+  void initState() {
+    super.initState();
+    tempMode = themeController.themeMode.value;
   }
 
   @override
@@ -84,15 +104,17 @@ class _NewgroupaddState extends State<Newgroupadd> {
 
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Color(0xFF0B1014),
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         appBar: AppBar(
-          backgroundColor: Color(0xFF0B1014),
+          scrolledUnderElevation: 0,
+          automaticallyImplyLeading: false,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           actions: [
             IconButton(
               onPressed: () {
                 Navigator.pop(context);
               },
-              icon: Icon(Icons.arrow_back_sharp, color: Colors.white),
+              icon: Icon(Icons.arrow_back_sharp, ),
             ),
             SizedBox(width: 5),
             Column(
@@ -101,18 +123,18 @@ class _NewgroupaddState extends State<Newgroupadd> {
               children: [
                 Text(
                   'New group',
-                  style: TextStyle(color: Colors.white.withOpacity(0.9), fontSize: 17),
+                  style: TextStyle( fontSize: 17),
                 ),
                 Text(
                   'Add members',
-                  style: TextStyle(color: Colors.white.withOpacity(0.9), fontSize: 12),
+                  style: TextStyle( fontSize: 12),
                 ),
               ],
             ),
             Spacer(),
             IconButton(
               onPressed: () {},
-              icon: Icon(Icons.search, color: Colors.white),
+              icon: Icon(Icons.search, ),
             ),
           ],
         ),
@@ -121,7 +143,7 @@ class _NewgroupaddState extends State<Newgroupadd> {
             children: [
 
               if (hj)
-                Container(height: 1, color: Colors.white.withOpacity(0.1)),
+                Container(height: 1, ),
               if(hj)
               SizedBox(height: 8),
                 if(hj)
@@ -161,7 +183,7 @@ class _NewgroupaddState extends State<Newgroupadd> {
                                   onTap: () {
                                     ontaps(index1);
                                   },
-                                  child: CircleAvatar(backgroundColor: Colors.grey, radius: 10,child: Icon(Icons.close, color: Colors.black, size: 15)),
+                                  child: CircleAvatar( radius: 10,child: Icon(Icons.close,  size: 15)),
                                 ),
                               ),
                             ],
@@ -173,7 +195,7 @@ class _NewgroupaddState extends State<Newgroupadd> {
                               name,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
-                              style: TextStyle(color: Colors.white, fontSize: 11),
+                              style: TextStyle( fontSize: 11),
                               textAlign: TextAlign.center,
                             ),
                           ),
@@ -199,18 +221,18 @@ class _NewgroupaddState extends State<Newgroupadd> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       if (list1 && index == 0) ...[
-                        Container(height: 1, color: Colors.white.withOpacity(0.1)),
+                        Container(height: 1,),
                         SizedBox(height: 8),
                         Padding(
                           padding: EdgeInsets.only(left: 8.0, top: 5),
-                          child: Text("Frequently contacted", style: TextStyle(color: Colors.grey)),
+                          child: Text("Frequently contacted", style: TextStyle()),
                         ),
                         SizedBox(height: 8),
                       ],
                       if (!list1 && index == titles.length) ...[
                         Padding(
                           padding: EdgeInsets.only(left: 8.0, top: 5),
-                          child: Text("Contacts on WhatsApp", style: TextStyle(color: Colors.grey)),
+                          child: Text("Contacts on WhatsApp", ),
                         ),
                         SizedBox(height: 8),
                       ],
@@ -232,7 +254,6 @@ class _NewgroupaddState extends State<Newgroupadd> {
                                   Text(
                                     titless,
                                     style: TextStyle(
-                                        color: Colors.white.withOpacity(0.9),
                                         fontSize: 18,
                                         fontWeight: FontWeight.w600),
                                   ),
@@ -243,7 +264,6 @@ class _NewgroupaddState extends State<Newgroupadd> {
                                       subtitle,
                                       style: TextStyle(
                                         overflow: TextOverflow.ellipsis,
-                                        color: Color(0xFF666E71),
                                         fontSize: 15,
                                         fontWeight: FontWeight.w400,
                                       ),
@@ -266,7 +286,7 @@ class _NewgroupaddState extends State<Newgroupadd> {
         floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.green,
           onPressed: () {},
-          child: Icon(Icons.arrow_forward, color: Colors.black),
+          child: Icon(Icons.arrow_forward, color: Theme.of(context).scaffoldBackgroundColor,),
         ),
       ),
     );

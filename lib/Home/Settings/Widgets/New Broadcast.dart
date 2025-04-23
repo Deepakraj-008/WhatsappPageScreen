@@ -88,27 +88,27 @@ class _NewBroadcastsState extends State<NewBroadcasts> {
 
       return SafeArea(
       child: Scaffold(
-        backgroundColor: Color(0xFF0B1014),
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         appBar: AppBar(
-          backgroundColor: Color(0xFF0B1014),
+          scrolledUnderElevation: 0,
+          automaticallyImplyLeading: false,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           actions: [
             IconButton(onPressed: () {
               Navigator.pop(context);
-            }, icon: Icon(Icons.arrow_back_sharp, color: Colors.white,)
+            }, icon: Icon(Icons.arrow_back_sharp,)
             ), SizedBox(width: 5,),
             Column(crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text('New broadcast',
                   style: TextStyle(
-                    color: Colors.white.withOpacity(0.9),
                     fontSize: 17,
                   ),
                 ),
                 Text(
                   " of ${title.length} selected",
                  style: TextStyle(
-                    color: Colors.white.withOpacity(0.9),
                     fontSize: 12,
                   ),
                 ),
@@ -119,7 +119,6 @@ class _NewBroadcastsState extends State<NewBroadcasts> {
               onPressed: () {},
               icon: Icon(
                 Icons.search,
-                color: Colors.white,
               ),
             ),
           ],
@@ -160,7 +159,7 @@ class _NewBroadcastsState extends State<NewBroadcasts> {
                                   onTap: () {
                                     ontaps(index1);
                                   },
-                                  child: CircleAvatar(backgroundColor: Colors.grey, radius: 10,child: Icon(Icons.close, color: Colors.black, size: 15)),
+                                  child: CircleAvatar(backgroundColor: Theme.of(context).scaffoldBackgroundColor, radius: 10,child: Icon(Icons.close, color: Theme.of(context).scaffoldBackgroundColor, size: 15)),
                                 ),
                               ),
                             ],
@@ -172,7 +171,7 @@ class _NewBroadcastsState extends State<NewBroadcasts> {
                               name,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
-                              style: TextStyle(color: Colors.white, fontSize: 11),
+                              style: TextStyle( fontSize: 11),
                               textAlign: TextAlign.center,
                             ),
                           ),
@@ -187,11 +186,11 @@ class _NewBroadcastsState extends State<NewBroadcasts> {
                 padding: const EdgeInsets.only(left: 20.0,right: 20),
                 child: Center(
                   child: Text('Only contacts with +91 7095566055 in their address book will recieve your broadcast messages.',
-                    style: TextStyle(overflow: TextOverflow.ellipsis,color: Colors.grey,),maxLines: 2,textAlign: TextAlign.center,),
+                    style: TextStyle(overflow: TextOverflow.ellipsis),maxLines: 2,textAlign: TextAlign.center,),
                 ),
               ),
               SizedBox(height: 15,),
-              Container(height: 1,width: MediaQuery.of(context).size.width ,decoration: BoxDecoration(color: Colors.white.withOpacity(0.1)),),
+              Container(height: 1,width: MediaQuery.of(context).size.width ,decoration: BoxDecoration(),),
               SizedBox(height: 10,),
 
               ListView.separated(
@@ -245,7 +244,6 @@ class _NewBroadcastsState extends State<NewBroadcasts> {
                                   Text(
                                     title[index],
                                     style: TextStyle(
-                                        color: Colors.white.withOpacity(0.9),
                                         fontSize: 18,
                                         fontWeight: FontWeight.w600),
                                   ),
@@ -256,7 +254,6 @@ class _NewBroadcastsState extends State<NewBroadcasts> {
                                       subs[index],
                                       style: TextStyle(
                                         overflow: TextOverflow.ellipsis,
-                                        color: Color(0xFF666E71),
                                         fontSize: 15,
                                         fontWeight: FontWeight.w400,
                                       ),
@@ -281,7 +278,7 @@ class _NewBroadcastsState extends State<NewBroadcasts> {
           onPressed: (){
 
           },
-          child: Icon(Icons.arrow_forward,color: Colors.black,),),
+          child: Icon(Icons.arrow_forward,color: Theme.of(context).scaffoldBackgroundColor,),),
       ),
 
 
