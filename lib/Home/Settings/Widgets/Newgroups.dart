@@ -29,20 +29,20 @@ class _NewgroupaddState extends State<Newgroupadd> {
   }
 
 
-  ThemeMode _themeMode = ThemeMode.system;
-
-  void _updateTheme(ThemeMode mode) {
-    setState(() => _themeMode = mode);
-  }
-
-  late ThemeMode tempMode;
-  final themeController = Get.find<ThemeController>();
-
-  @override
-  void initState() {
-    super.initState();
-    tempMode = themeController.themeMode.value;
-  }
+  // ThemeMode _themeMode = ThemeMode.system;
+  //
+  // void _updateTheme(ThemeMode mode) {
+  //   setState(() => _themeMode = mode);
+  // }
+  //
+  // late ThemeMode tempMode;
+  // final themeController = Get.find<ThemeController>();
+  //
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   tempMode = themeController.themeMode.value;
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -143,7 +143,7 @@ class _NewgroupaddState extends State<Newgroupadd> {
             children: [
 
               if (hj)
-                Container(height: 1, ),
+                Container(height: 1,color: Theme.of(context).dividerColor.withOpacity(0.1) ),
               if(hj)
               SizedBox(height: 8),
                 if(hj)
@@ -221,7 +221,7 @@ class _NewgroupaddState extends State<Newgroupadd> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       if (list1 && index == 0) ...[
-                        Container(height: 1,),
+                        Container(height: 1,color: Theme.of(context).dividerColor.withOpacity(0.1)),
                         SizedBox(height: 8),
                         Padding(
                           padding: EdgeInsets.only(left: 8.0, top: 5),

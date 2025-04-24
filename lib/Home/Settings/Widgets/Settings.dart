@@ -100,7 +100,7 @@ class _SettingsState extends State<Settings> {
           body: SingleChildScrollView(
             child: Column(
               children: [
-                Container(height: 1,width: MediaQuery.of(context).size.width ,decoration: BoxDecoration(color: Colors.white.withOpacity(0.1)),),
+                Container(height: 1,width: MediaQuery.of(context).size.width ,decoration: BoxDecoration(color: Theme.of(context).dividerColor.withOpacity(0.1)),),
                 SizedBox(height: 5,),
                 ListTile(
                   onTap: (){
@@ -150,7 +150,7 @@ class _SettingsState extends State<Settings> {
                     ),
                   ),
                 ),SizedBox(height: 15,),
-                Container(height: 1,width: MediaQuery.of(context).size.width ,decoration: BoxDecoration(color: Colors.white.withOpacity(0.1)),),
+                Container(height: 1,width: MediaQuery.of(context).size.width ,decoration: BoxDecoration(color: Theme.of(context).dividerColor.withOpacity(0.1)),),
                 SizedBox(height: 5,),
                 ListView.builder(
                     itemCount: titles.length,

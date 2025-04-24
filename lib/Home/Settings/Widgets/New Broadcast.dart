@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_navigation/src/routes/default_route.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_disposable.dart';
 
 class NewBroadcasts extends StatefulWidget {
   const NewBroadcasts({super.key});
@@ -159,7 +161,7 @@ class _NewBroadcastsState extends State<NewBroadcasts> {
                                   onTap: () {
                                     ontaps(index1);
                                   },
-                                  child: CircleAvatar(backgroundColor: Theme.of(context).scaffoldBackgroundColor, radius: 10,child: Icon(Icons.close, color: Theme.of(context).scaffoldBackgroundColor, size: 15)),
+                                  child: CircleAvatar(backgroundColor: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.9).withGreen(500), radius: 10,child: Icon(Icons.close, color: Theme.of(context).iconTheme.color, size: 15)),
                                 ),
                               ),
                             ],
@@ -190,7 +192,7 @@ class _NewBroadcastsState extends State<NewBroadcasts> {
                 ),
               ),
               SizedBox(height: 15,),
-              Container(height: 1,width: MediaQuery.of(context).size.width ,decoration: BoxDecoration(),),
+              Container(height: 1,width: MediaQuery.of(context).size.width ,decoration: BoxDecoration(color: Theme.of(context).dividerColor.withOpacity(0.1)),),
               SizedBox(height: 10,),
 
               ListView.separated(

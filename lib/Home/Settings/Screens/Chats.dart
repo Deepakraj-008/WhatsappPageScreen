@@ -343,6 +343,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../Common/ListTiles.dart';
 import '../../../main.dart';
 
 class Chatss extends StatefulWidget {
@@ -402,9 +403,13 @@ class _ChatssState extends State<Chatss> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        backgroundColor: Theme
+            .of(context)
+            .scaffoldBackgroundColor,
         appBar: AppBar(
-          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+          backgroundColor: Theme
+              .of(context)
+              .scaffoldBackgroundColor,
           automaticallyImplyLeading: false,
           scrolledUnderElevation: 0,
           toolbarHeight: 60,
@@ -424,7 +429,7 @@ class _ChatssState extends State<Chatss> {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              Divider(color: Colors.white.withOpacity(0.03)),
+              Divider(color: Theme.of(context).dividerColor.withOpacity(0.1)),
               sectionTitle("Display"),
               ListTile(
                 onTap: () async {
@@ -441,6 +446,8 @@ class _ChatssState extends State<Chatss> {
                               children: ThemeMode.values.map((mode) {
                                 return RadioListTile<ThemeMode>(
                                   value: mode,
+                                  activeColor: Colors.green,
+                                  focusNode: FocusNode(),
                                   groupValue: localMode,
                                   title: Text(_getThemeName(mode)),
                                   onChanged: (val) {
@@ -454,11 +461,14 @@ class _ChatssState extends State<Chatss> {
                             actions: [
                               TextButton(
                                 onPressed: () => Navigator.pop(context),
-                                child: const Text("Cancel", style: TextStyle(color: Colors.greenAccent)),
+                                child: const Text("Cancel", style: TextStyle(
+                                    color: Colors.greenAccent)),
                               ),
                               TextButton(
-                                onPressed: () => Navigator.pop(context, localMode),
-                                child: const Text("Save", style: TextStyle(color: Colors.greenAccent)),
+                                onPressed: () =>
+                                    Navigator.pop(context, localMode),
+                                child: const Text("Save", style: TextStyle(
+                                    color: Colors.greenAccent)),
                               ),
                             ],
                           );
@@ -483,14 +493,16 @@ class _ChatssState extends State<Chatss> {
                 leading: Icon(Icons.color_lens_outlined),
                 title: Text("Default chat theme"),
               ),
-              Divider(color: Colors.white.withOpacity(0.03)),
+              Divider(color: Theme.of(context).dividerColor.withOpacity(0.1)),
               sectionTitle("Chat settings"),
-              switchTile("Enter is send", "Enter key will send your message", enterIsSend, (val) {
-                setState(() => enterIsSend = val);
-              }),
-              switchTile("Media visibility", "Show media in gallery", mediaVisibility, (val) {
-                setState(() => mediaVisibility = val);
-              }),
+              switchTile("Enter is send", "Enter key will send your message",
+                  enterIsSend, (val) {
+                    setState(() => enterIsSend = val);
+                  }),
+              switchTile("Media visibility", "Show media in gallery",
+                  mediaVisibility, (val) {
+                    setState(() => mediaVisibility = val);
+                  }),
               ListTile(
                 onTap: () async {
                   int? selectedFont = await showDialog<int>(
@@ -520,7 +532,8 @@ class _ChatssState extends State<Chatss> {
                                 child: const Text("Cancel"),
                               ),
                               TextButton(
-                                onPressed: () => Navigator.pop(context, localFont),
+                                onPressed: () =>
+                                    Navigator.pop(context, localFont),
                                 child: const Text("Save"),
                               ),
                             ],
@@ -541,15 +554,17 @@ class _ChatssState extends State<Chatss> {
                 title: const Text("Font size"),
                 subtitle: Text(_fontLabel),
               ),
-              switchTile("Voice message transcripts", "Read voice messages", transcripts, (val) {
-                setState(() => transcripts = val);
-              }),
-              Divider(color: Colors.white.withOpacity(0.03)),
+              switchTile("Voice message transcripts", "Read voice messages",
+                  transcripts, (val) {
+                    setState(() => transcripts = val);
+                  }),
+              Divider(color: Theme.of(context).dividerColor.withOpacity(0.1)),
               sectionTitle("Archived chats"),
-              switchTile("Keep chats archived", "Archived chats stay archived", keepArchived, (val) {
-                setState(() => keepArchived = val);
-              }),
-              Divider(color: Colors.white.withOpacity(0.03)),
+              switchTile("Keep chats archived", "Archived chats stay archived",
+                  keepArchived, (val) {
+                    setState(() => keepArchived = val);
+                  }),
+              Divider(color: Theme.of(context).dividerColor.withOpacity(0.1)),
               const ListTile(
                 leading: Icon(Icons.cloud_upload_outlined),
                 title: Text("Chat backup"),
@@ -568,28 +583,4 @@ class _ChatssState extends State<Chatss> {
       ),
     );
   }
-
-  Widget sectionTitle(String title) => Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 15.0),
-    child: Align(
-      alignment: Alignment.centerLeft,
-      child: Text(title, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-    ),
-  );
-
-  Widget switchTile(String title, String subtitle, bool value, ValueChanged<bool> onChanged) {
-    return ListTile(
-      leading:  SizedBox(width: 25,),
-      title: Text(title),
-      subtitle: Text(subtitle),
-      trailing: Switch(
-        value: value,
-        activeColor: Colors.black,
-        activeTrackColor: Colors.green[400],
-        onChanged: onChanged,
-      ),
-    );
-  }
 }
-
-
